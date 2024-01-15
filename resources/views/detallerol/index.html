@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Series de Fechas</title>
+</head>
+<body>
+
+<div class="container mt-5">
+  <button id="generarFechas" class="btn btn-primary mb-3">Generar Fechas</button>
+  <div id="contenedorFechas"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+<script>
+    function esMiercoles(fecha) {
+        return fecha.getDay() === 3; // 3 representa miércoles
+      }
+      
+      // Ejemplo de uso
+      const fechaEjemplo = new Date(); // Usar la fecha actual
+      if (esMiercoles(fechaEjemplo.setDate(fechaEjemplo))) {
+        console.log("Es miércoles!");
+      } else {
+        console.log("No es miércoles.");
+      }
+      
+      
+</script>
+
+</body>
+</html>
