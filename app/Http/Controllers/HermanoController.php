@@ -135,28 +135,28 @@ class HermanoController extends Controller
         })->get();
         return response()->json($presididores);
     }
-    public function ministrosMiercoles(){
-        $presididores = Hermano::whereHas('papeles', function ($query) {
-            $query->where('papel', 'PRESIDE');
+    public function miercoles(){
+        $miercoles = Hermano::whereHas('papeles', function ($query) {
+            $query->where('papel', 'MINISTERIO MIERCOLES');
         })->get();
-        return response()->json($presididores);
+        return response()->json($miercoles);
     }
-    public function ministrosOracion(){
-        $presididores = Hermano::whereHas('papeles', function ($query) {
-            $query->where('papel', 'PRESIDE');
+    public function sabados(){
+        $sabados = Hermano::whereHas('papeles', function ($query) {
+            $query->where('papel', 'MINISTERIO SABADO');
         })->get();
-        return response()->json($presididores);
+        return response()->json($sabados);
     }
-    public function ministrosDomingos(){
-        $presididores = Hermano::whereHas('papeles', function ($query) {
-            $query->where('papel', 'PRESIDE');
+    public function domingos(){
+        $domingos = Hermano::whereHas('papeles', function ($query) {
+            $query->where('papel', 'MINISTERIO DOMINGO');
         })->get();
-        return response()->json($presididores);
+        return response()->json($domingos);
     }
-    public function Predicacores(){
-        $presididores = Hermano::whereHas('papeles', function ($query) {
-            $query->where('papel', 'PRESIDE');
+    public function predicacores(){
+        $predicadores = Hermano::whereHas('papeles', function ($query) {
+            $query->where('papel', 'PREDICACION');
         })->get();
-        return response()->json($presididores);
+        return response()->json($predicadores);
     }
 }

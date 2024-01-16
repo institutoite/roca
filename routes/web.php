@@ -84,6 +84,7 @@ Route::post('roles/{rol}/detalles/store', [DetalleRolController::class, 'store']
 // endpoints 
 
 Route::get("presididores",[HermanoController::class,"presididores"])->name("presididores");
+Route::get("miercoles",[HermanoController::class,"miercoles"])->name("miercoles");
 Route::get("sabados",[HermanoController::class,"sabados"])->name("sabados");
 Route::get("domingos",[HermanoController::class,"domingos"])->name("domingos");
 Route::get("predicadores",[HermanoController::class,"predicadores"])->name("predicadores");

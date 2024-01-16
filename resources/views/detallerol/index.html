@@ -13,20 +13,50 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js" integrity="sha512-hUhvpC5f8cgc04OZb55j0KNGh4eh7dLxd/dPSJ5VyzqDWxsayYbojWyl5Tkcgrmb/RVKCRJI1jNlRbVP4WWC4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment-with-locales.min.js" integrity="sha512-4F1cxYdMiAW98oomSLaygEwmCnIP38pb4Kx70yQYqRwLVCs3DbRumfBq82T08g/4LJ/smbFGFpmeFlQgoDccgg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    function esMiercoles(fecha) {
-        return fecha.getDay() === 3; // 3 representa miércoles
-      }
-      
-      // Ejemplo de uso
-      const fechaEjemplo = new Date(); // Usar la fecha actual
-      if (esMiercoles(fechaEjemplo.setDate(fechaEjemplo))) {
-        console.log("Es miércoles!");
-      } else {
-        console.log("No es miércoles.");
-      }
-      
+ 
+
+  function obtenerFechaSiguiente(fechaBase) {
+    const fechaBaseMoment = moment(fechaBase);
+    console.log(fechaBase);
+    const diaSemana = fechaBaseMoment.day();
+    let diasHastaSiguiente;
+    console.log(diaSemana);
+    switch (diaSemana) {
+      case 0: 
+        diasHastaSiguiente = 3; 
+        break;
+      case 3: 
+        diasHastaSiguiente = 3; 
+        break;
+      case 6: 
+        diasHastaSiguiente = 1; 
+        break;
+      default:
+        diasHastaSiguiente = 0; 
+    }
+    const fechaSiguiente = fechaBaseMoment.add(diasHastaSiguiente, 'days');
+    return fechaSiguiente.format('YYYY-MM-DD');
+  }
+  
+  // Ejemplo de uso
+
+  //const fechaBase = '2024-01-17'; // Ejemplo: miércoles
+  let I = 1;
+let fechaBase = '2024-01-17'; // Asigna la fecha base inicial
+
+while (I <= 20) {
+  const fechaSiguiente = obtenerFechaSiguiente(fechaBase);
+  console.log(`Fecha siguiente (${I}): ${fechaSiguiente}`);
+  
+  // Actualiza la fechaBase para la próxima iteración
+  fechaBase = fechaSiguiente;
+  
+  I++;
+}
+    
       
 </script>
 

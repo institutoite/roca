@@ -32,7 +32,22 @@ class DetallerolController extends Controller
      */
     public function store(StoreDetallerolRequest $request)
     {
-        //
+     
+        $token = $request->input('_token');
+
+        // Itera sobre las fechas y su información asociada
+        for ($i = 1; $i <= 4; $i++) {
+            $fecha = $request->input("fecha$i");
+            $preside = $request->input("preside$i");
+            $ministra = $request->input("ministra$i");
+            $detalle = new DetalleRol();
+            $detalle->fecha = $fecha;
+            $detalle->preside_id = $preside;
+            $detalle->ministra_id = $ministra;
+            $detalle->rol_id = 1;
+
+            $detalle->save();
+        }
     }
 
     /**
