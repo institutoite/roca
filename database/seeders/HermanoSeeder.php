@@ -14,9 +14,12 @@ class HermanoSeeder extends Seeder
     public function run(): void
     {
         $hermanos = [
+            ['nombre' => 'Alvaro', 'apellidos' => 'Mamani'],
             ['nombre' => 'Carlos', 'apellidos' => 'Jaramillo'],
             ['nombre' => 'Carmelo', 'apellidos' => 'Illisca'],
+            ['nombre' => 'Daniel', 'apellidos' => 'Baron'],
             ['nombre' => 'David', 'apellidos' => 'Flores'],
+            ['nombre' => 'Diego', 'apellidos' => 'Taquichiri'],
             ['nombre' => 'Domingo', 'apellidos' => 'Andacaba'],
             ['nombre' => 'Eliodoro', 'apellidos' => 'Baron'],
             ['nombre' => 'Froilan', 'apellidos' => 'Canaza'],
@@ -24,10 +27,7 @@ class HermanoSeeder extends Seeder
             ['nombre' => 'Marcial', 'apellidos' => 'Espino'],
             ['nombre' => 'Mario', 'apellidos' => 'Alarcon'],
             ['nombre' => 'Vicente', 'apellidos' => 'Alejandro'],
-            ['nombre' => 'Wili', 'apellidos' => 'Garnica'],
-            ['nombre' => 'Daniel', 'apellidos' => 'Baron'],
-            ['nombre' => 'Alvaro', 'apellidos' => 'Mamani'],
-            ['nombre' => 'Diego', 'apellidos' => 'Taquichiri'],
+            ['nombre' => 'Wily', 'apellidos' => 'Garnica'],
             // Agrega más registros según sea necesario
         ];
 
