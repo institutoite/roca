@@ -32,7 +32,7 @@ class DetallerolController extends Controller
      */
     public function store(StoreDetallerolRequest $request)
     {
-     
+      //dd($request->all());
         $token = $request->input('_token');
 
         // Itera sobre las fechas y su información asociada
@@ -44,18 +44,21 @@ class DetallerolController extends Controller
             $detalle->fecha = $fecha;
             $detalle->preside_id = $preside;
             $detalle->ministra_id = $ministra;
-            $detalle->rol_id = 1;
+            $detalle->rol_id = $request->rol_id;
 
             $detalle->save();
         }
+
+        return redirect()->route("hermano.index");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Detallerol $detallerol)
+    public function show(Rol $rol)
     {
-        //
+        $detalle=$rol->detalles;
+        return view("detallerol.show",compact("detalle","rol"));
     }
 
     /**

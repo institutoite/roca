@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Detallerol extends Model
 {
     use HasFactory;
+    public function rol()
+    {
+        return $this->belongsTo(Rol::class);
+    }
+    public function hermanopreside()
+    {
+        return $this->belongsTo(Hermano::class,'preside_id');
+    }
+    public function hermanoministra()
+    {
+        return $this->belongsTo(Hermano::class,'ministra_id');
+    }
 }

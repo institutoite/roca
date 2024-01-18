@@ -17,6 +17,7 @@
         <div id="cardsContainer" class="row">
         
         </div>
+        <input type="number" name="rol_id" id="rol_id" value="{{ $rol->id }}">
         <button type="submit">Guardar</button>
       </form>
     </div>

@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HermanoController::class, 'index'])->name('home');
 // Rutas para mostrar la lista y el formulario de creación
 Route::get('hermanos', [HermanoController::class, 'index'])->name('hermano.index');
 Route::get('hermanos/create', [HermanoController::class, 'create'])->name('hermano.create');
@@ -80,8 +80,10 @@ Route::delete('roles/{rol}', [RolController::class, 'destroy'])->name('rol.destr
 Route::get('roles/{rol}/detalles', [DetalleRolController::class, 'index'])->name('roles.detalles.index');
 Route::get('detalle/{rol}/create', [DetalleRolController::class, 'create'])->name('detallerol.create');
 Route::post('roles/{rol}/detalles/store', [DetalleRolController::class, 'store'])->name('detallerol.store');
+Route::get('detallerol/ver/{rol}',[DetalleRolController::class,'show'])->name("detallerol.ver");
 
 // endpoints 
+
 
 Route::get("presididores",[HermanoController::class,"presididores"])->name("presididores");
 Route::get("miercoles",[HermanoController::class,"miercoles"])->name("miercoles");

@@ -1,31 +1,48 @@
 use App\Models\Hermano;
 use App\Models\Papel;
 
-$p=Papel::find(1);
-$h=Hermano::find(13);
+$p=Rol::find(2);
 
-$presididores = Hermano::whereHas('papeles', function ($query) {
-        $query->where('papel', 'PRESIDE');
-    })->get();
+$p->detalles;
 use App\Models\Hermano;
 use App\Models\Papel;
 
-$p=Papel::find(1);
-$h=Hermano::find(13);
+$p=Detalle::find(14);
 
-$presididores = Hermano::whereHas('papeles', function ($query) {
-        $query->where('papel', 'PRESIDE');
-    })->get();
-$p=Papel::all();
+$p->hermano->preside
 use App\Models\Hermano;
 use App\Models\Papel;
 
-$p=Papel::find(1);
-$h=Hermano::find(13);
+$p=Detallerolind(14);
 
-$papel="PRESIDE";
+$p->hermano->preside
+use App\Models\Hermano;
+use App\Models\Papel;
 
-$presididores = Hermano::whereHas('papeles', function ($query) use ($papel){
-  $query->where('papel', $papel);
-})->get();
-return response()->json($presididores);
+$p=Detallerol(14);
+
+$p->hermano->preside
+use App\Models\Hermano;
+use App\Models\Papel;
+
+$p=Detallerol::find(1);
+
+$p->hermano->preside
+use App\Models\Hermano;
+use App\Models\Papel;
+
+$p=Detallerol::find(1);
+
+$p->hermanopreside
+use App\Models\Hermano;
+use App\Models\Papel;
+
+$p=Detallerol::find(1);
+
+$p->hermanopreside
+use App\Models\Hermano;
+use App\Models\Papel;
+
+$p=Detallerol::find(1);
+
+$p->hermanopreside

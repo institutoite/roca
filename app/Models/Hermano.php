@@ -18,4 +18,12 @@ class Hermano extends Model
     {
         return $this->belongsToMany(Papel::class)->withTimestamps();
     }
+    public function presidedetalles()
+    {
+        return $this->hasMany(Detallerol::class,"preside_id");
+    }
+    public function ministradetalles()
+    {
+        return $this->hasMany(Detallerol::class,"ministra_id");
+    }
 }

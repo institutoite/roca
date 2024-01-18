@@ -35,6 +35,7 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar a este rol?')" {{ $rol->estado ? '' : 'disabled' }}>Eliminar</button>
                                                 </form>
+                                                <a href="{{ route('detallerol.ver', $rol) }}" class="btn btn-primary btn-sm">Ver Detalle</a>
                                             </div>
                                         </td>
                                     </tr>
