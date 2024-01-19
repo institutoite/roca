@@ -57,8 +57,9 @@ class DetallerolController extends Controller
      */
     public function show(Rol $rol)
     {
-        $detalle=$rol->detalles;
-        return view("detallerol.show",compact("detalle","rol"));
+        $detalleAgrupados=$rol->detalles->chunk(4);
+        //dd($detalleAgrupados);
+        return view("detallerol.show",compact("detalleAgrupados","rol"));
     }
 
     /**

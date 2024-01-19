@@ -17,7 +17,8 @@
         <div id="cardsContainer" class="row">
         
         </div>
-        <input type="number" name="rol_id" id="rol_id" value="{{ $rol->id }}">
+        <input type="number" hidden name="rol_id" id="rol_id" value="{{ $rol->id }}">
+        <input type="number" hidden name="contadorCards" id="contadorCards" value="">
         <button type="submit">Guardar</button>
       </form>
     </div>
@@ -49,7 +50,6 @@
         <div class="card">
           <div class="card-header">
             <button class="btn btn-danger btnEliminarCard">Eliminar</button> 
-            <span class="text-right">SEMANA ${contadorCards}</span> 
           </div>
           <div class="card-body">
             ${generarFilaComponentes()}
@@ -62,6 +62,7 @@
     `;
 
     $('#cardsContainer').append(cardHtml);
+    $("#contadorCards").val(contadorCards);
     contadorCards++;
   }
 
@@ -168,7 +169,7 @@
       success: function(data) {
         const dropdown = $(selector);
         dropdown.empty();
-        dropdown.append(`<option value="">Seleccione un Hermano</option>`);
+        // dropdown.append(`<option value="">Seleccione un Hermano</option>`);
         data.forEach(opcion => {
           dropdown.append(`<option value="${opcion.id}">${opcion.nombre+" "+opcion.apellidos}</option>`);
         });
@@ -189,6 +190,8 @@
     const cardId = $(this).parent().parent().parent().prop("id");
     console.log(cardId);
     $(`#${cardId}`).remove();
+    contadorCards=contadorCards-1;
+    $("#contadorCards").val(contadorCards);
   });
 
   $("#fechabase").change(function() {

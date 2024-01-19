@@ -9,35 +9,29 @@
             {{  $rol->mes." ". $rol->gestion}}
         </div>
         <div class="card-body">
-            @php
-                $i=1;
-            @endphp
-
-            <table class="table table-bordered table-hover table-striped">
-                @foreach ($detalle as $item)
-                    @if (($i % 5 == 0)||($i == 1))
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Fecha</th>
-                                <th>Dia</th>
-                                <th>Preside</th>
-                                <th>Ministra</th>
-                            </tr>
-                        </thead>
-                    @endif    
+            
+            @foreach($detalleAgrupados as $grupo)
+                <table class="table table-bordered table-hover table-striped">
+                    <thead>
                         <tr>
-                            <td>{{ $item->id }}</td>
-                            <td>{{ $item->fecha }}</td>
-                            <td>{{ $item->dia }}</td>
-                            <td>{{ $item->hermanopreside->nombre }}</td>
-                            <td>{{ $item->hermanoministra->nombre }}</td>
+                            <th>ID</th>
+                            <th>Fecha</th>
+                            <th>Dia</th>
+                            <th>Preside</th>
+                            <th>Ministra</th>
                         </tr>
-                    @php
-                        $i=$i+1;
-                    @endphp        
-                @endforeach
-            </table>
+                    </thead>
+                    @foreach($grupo as $detalle)
+                        <tr>
+                            <td>{{ $detalle->id }}</td>
+                            <td>{{ $detalle->fecha }}</td>
+                            <td>{{ $detalle->dia }}</td>
+                            <td>{{ $detalle->hermanopreside->nombre }}</td>
+                            <td>{{ $detalle->hermanoministra->nombre }}</td>
+                        </tr>
+                    @endforeach
+                </table>
+            @endforeach
         </div>
     </div>
 @stop
