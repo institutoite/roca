@@ -1,54 +1,12 @@
 use App\Models\Hermano;
 use App\Models\Papel;
 
-$p=Rol::find(1);
-
-$detalleAgrupados=$rol->detalles->chunk(4);
+$presididores = Detallerol::find(1);
 use App\Models\Hermano;
 use App\Models\Papel;
 
-$p=Rol::find(1);
-
-
+$presididores = Detallerol::find(1);
 use App\Models\Hermano;
 use App\Models\Papel;
 
-$p=Rol::find(1);
-
-detalleAgrupados=$rol->detalles->chunk(4);
-use App\Models\Hermano;
-use App\Models\Papel;
-
-$p=Rol::find(1);
-
-detalleAgrupados=$rol->detalles->chunk(4);$
-use App\Models\Hermano;
-use App\Models\Papel;
-
-$p=Rol::find(1);
-
-$detalleAgrupados=$rol->detalles->chunk(4);
-use App\Models\Hermano;
-use App\Models\Papel;
-
-$rol=Rol::find(1);
-
-$detalleAgrupados=$rol->detalles->chunk(4);
-use App\Models\Hermano;
-use App\Models\Papel;
-
-$rol=Rol::find(1);
-
-$detalleAgrupados=$rol->detalles->chunk(3);
-use App\Models\Hermano;
-use App\Models\Papel;
-
-$rol=Rol::find(2);
-
-$detalleAgrupados=$rol->detalles->chunk(3);
-use App\Models\Hermano;
-use App\Models\Papel;
-
-$presididores = Hermano::whereHas('papeles', function ($query) {
-            $query->where('papel', 'PRESIDE');
-        })->get();
+$presididores = Detallerol::find(1);

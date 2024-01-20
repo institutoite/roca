@@ -25,7 +25,7 @@
                         <tr>
                             <td>{{ $detalle->id }}</td>
                             <td>{{ $detalle->fecha }}</td>
-                            <td>{{ $detalle->dia }}</td>
+                            <td>{{ $detalle->fecha->format('l') }}</td>
                             <td>{{ $detalle->hermanopreside->nombre }}</td>
                             <td>{{ $detalle->hermanoministra->nombre }}</td>
                         </tr>
