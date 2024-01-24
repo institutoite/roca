@@ -81,6 +81,7 @@ Route::get('roles/{rol}/detalles', [DetalleRolController::class, 'index'])->name
 Route::get('detalle/{rol}/create', [DetalleRolController::class, 'create'])->name('detallerol.create');
 Route::post('roles/{rol}/detalles/store', [DetalleRolController::class, 'store'])->name('detallerol.store');
 Route::get('detallerol/ver/{rol}',[DetalleRolController::class,'show'])->name("detallerol.ver");
+Route::get("descargar/pdf/{rol}",[DetalleRolController::class,'descargar'])->name("descargar.rol");
 
 // endpoints 
 
@@ -90,3 +91,4 @@ Route::get("miercoles",[HermanoController::class,"miercoles"])->name("miercoles"
 Route::get("sabados",[HermanoController::class,"sabados"])->name("sabados");
 Route::get("domingos",[HermanoController::class,"domingos"])->name("domingos");
 Route::get("predicadores",[HermanoController::class,"predicadores"])->name("predicadores");
+

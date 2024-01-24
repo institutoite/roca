@@ -1,10 +1,11 @@
 
 @extends('adminlte::page')
-
 @section('title', 'Hermanos')
+
 
 @section('content')
     <div class="card">
+        <a href="{{ route('descargar.rol',$rol->id )}}">Descargar</a>
         <div class="card-header">
             {{  $rol->mes." ". $rol->gestion}}
         </div>
@@ -25,9 +26,9 @@
                         <tr>
                             <td>{{ $detalle->id }}</td>
                             <td>{{ $detalle->fecha }}</td>
-                            <td>{{ $detalle->fecha->format('l') }}</td>
-                            <td>{{ $detalle->hermanopreside->nombre }}</td>
-                            <td>{{ $detalle->hermanoministra->nombre }}</td>
+                            <td>{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }}</td>
+                            <td>{{ $detalle->hermanopreside->nombre.' '.$detalle->hermanopreside->apellidos }}</td>
+                            <td>{{ $detalle->hermanoministra->nombre.' '.$detalle->hermanoministra->apellidos }}</td>
                         </tr>
                     @endforeach
                 </table>

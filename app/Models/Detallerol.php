@@ -9,6 +9,7 @@ class Detallerol extends Model
 {
     use HasFactory;
     protected $dates=['fecha'];
+    
     public function rol()
     {
         return $this->belongsTo(Rol::class);

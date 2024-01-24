@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Hermanos')
+@section('title', 'Detalle')
 
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Listado de Hermanos</div>
+                <div class="card-header">Detalle de rol</div>
                 <a href="{{ route('hermano.create') }}" class="btn btn-primary mb-2">Crear Hermano</a>
                 <div class="card-body">
                     @if($hermanos->count() > 0)
