@@ -33,6 +33,9 @@
             background-color: #f2f2f2;
             font-weight: bold;
         }
+        .resaltado{
+            background: red;
+        }
 
         /* Otros estilos personalizados según tus necesidades */
 
@@ -65,8 +68,22 @@
                                 <td>{{ $detalle->id }}</td>
                                 <td>{{ $detalle->fecha }}</td>
                                 <td>{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }}</td>
-                                <td>{{ $detalle->hermanopreside->nombre.' '.$detalle->hermanopreside->apellidos }}</td>
-                                <td>{{ $detalle->hermanoministra->nombre.' '.$detalle->hermanoministra->apellidos }}</td>
+                                
+                                @if($detalle->hermanopreside->id==$hermano->id)
+                                    <td class="resaltado">
+                                @else
+                                    <td>
+                                @endif
+                                    {{ $detalle->hermanopreside->nombre.' '.$detalle->hermanopreside->apellidos }}
+                                </td>
+                                
+                                @if ($detalle->hermanoministra->id==$hermano->id)
+                                    <td class="resaltado">
+                                @else
+                                    <td>
+                                @endif
+                                    {{ $detalle->hermanoministra->nombre.' '.$detalle->hermanoministra->apellidos }}
+                                </td>
                             </tr>
                         @endforeach
                     </table>
@@ -74,6 +91,7 @@
                 @endforeach
             </div>
         </div>
+        ya temine
     @endforeach
 </body>
 </html>
