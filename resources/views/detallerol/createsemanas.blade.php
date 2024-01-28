@@ -40,6 +40,8 @@
   // Contador para asignar IDs únicos a los cards
   let contadorCards = 1;
   let contadorFilas = 0;
+  let esDomingoPrimeraVez=true;
+  let esDomingollenar=true;
   let fechaBase = $("#fechabase").val();
   console.log(fechaBase);
 
@@ -84,8 +86,17 @@
     let diasHastaSiguiente;
     console.log(diaSemana);
     switch (diaSemana) {
-      case 0: 
-        diasHastaSiguiente = 3; 
+      case 0:
+        if(esDomingoPrimeraVez)
+        {
+          diasHastaSiguiente = 0;
+          esDomingoPrimeraVez=false;
+        }  
+        else{
+          diasHastaSiguiente = 3;
+          esDomingoPrimeraVez=true;
+        }
+        
         break;
       case 3: 
         diasHastaSiguiente = 3; 
@@ -133,9 +144,18 @@
     const dia = fechaBaseM.day();
 
     switch (dia) {
-      case 0: 
-        llenarDropdown(`#ministra${contadorFilas}`, '../../predicadores');
-        llenarDropdown(`#ministra${contadorFilas}`, '../../domingos');
+      case 0:
+        if(esDomingollenar)
+        {
+          llenarDropdown(`#ministra${contadorFilas}`, '../../domingos');
+          esDomingollenar=false;
+        }  
+        else{
+          llenarDropdown(`#ministra${contadorFilas}`, '../../predicadores');
+          esDomingollenar=true;
+        }
+        
+        
         break;
       case 3: 
       llenarDropdown(`#ministra${contadorFilas}`, '../../miercoles');

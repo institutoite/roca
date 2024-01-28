@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function EsPrimo(Numero){
+            i=2;
+            while(i<Numero){
+                if(Numero % i == 0){
+                    i=Numero+2;
+                    return false;
+                }
+                i=i+1
+            }
+            return true;
+        }
+
+        
+
+
+        Numero = parseInt(prompt("Ingrese un numero a verficar si es primo: "))
+        console.log(EsPrimo(Numero));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
