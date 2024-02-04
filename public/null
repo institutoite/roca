@@ -1,4 +1,4 @@
-use App\Models\Categoria;
-use App\Models\Producto;
-
-     $producto = Producto::find(1800);
+$predicadores = Hermano::whereHas('papeles', function ($query) {
+            $query->where('papel', 'PREDICACION');
+        })->get();
+        return response()->json($predicadores);

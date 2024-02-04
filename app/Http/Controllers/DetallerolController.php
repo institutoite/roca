@@ -42,7 +42,7 @@ class DetallerolController extends Controller
         $token = $request->input('_token');
 
         // Itera sobre las fechas y su información asociada
-        for ($i = 1; $i <= 4*$request->contadorCards; $i++) {
+        for ($i = 1; $i <= 4*($request->contadorCards+1); $i++) {
             $fecha = $request->input("fecha$i");
             $preside = $request->input("preside$i");
             $ministra = $request->input("ministra$i");

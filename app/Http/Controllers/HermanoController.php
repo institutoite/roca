@@ -153,7 +153,7 @@ class HermanoController extends Controller
         })->get();
         return response()->json($domingos);
     }
-    public function predicacores(){
+    public function predicadores(){
         $predicadores = Hermano::whereHas('papeles', function ($query) {
             $query->where('papel', 'PREDICACION');
         })->get();

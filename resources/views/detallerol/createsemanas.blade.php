@@ -11,6 +11,7 @@
 
     <div class="container mt-5">
       <button id="agregarCard" class="btn btn-primary mb-3">Agregar Card</button>
+      <label id="info" for="">info</label>
       <input class="form-control" type="date" name="" id="fechabase" value="<?= Illuminate\Support\Facades\Date::now()->format('Y-m-d') ?>">
       <form action="{{ route("detallerol.store",$rol->id) }}" method="POST">
         @csrf
@@ -38,12 +39,13 @@
 <script>
   $(document).ready(function() {
   // Contador para asignar IDs únicos a los cards
-  let contadorCards = 1;
+  let contadorCards = 0;
   let contadorFilas = 0;
   let esDomingoPrimeraVez=true;
   let esDomingollenar=true;
   let fechaBase = $("#fechabase").val();
-  console.log(fechaBase);
+  //console.log("esDomingoPrimeraVez="+esDomingoPrimeraVez);
+  informar(contadorFilas,fechaBase,contadorCards);
 
   // Función para agregar un nuevo card con cuatro filas de componentes
   function agregarCard() {
@@ -66,6 +68,7 @@
     $('#cardsContainer').append(cardHtml);
     $("#contadorCards").val(contadorCards);
     contadorCards++;
+    informar(contadorFilas,fechaBase,contadorCards);
   }
 
   async function obtenerOpciones(){
@@ -81,20 +84,19 @@
    
   function obtenerFechaSiguiente(fechaBase) {
     const fechaBaseMoment = moment(fechaBase);
-    console.log(fechaBase);
     const diaSemana = fechaBaseMoment.day();
     let diasHastaSiguiente;
-    console.log(diaSemana);
+    //console.log("esDomingoPrimeraVez="+esDomingoPrimeraVez);
     switch (diaSemana) {
       case 0:
         if(esDomingoPrimeraVez)
         {
           diasHastaSiguiente = 0;
-          esDomingoPrimeraVez=false;
+          esDomingoPrimeraVez = false;
         }  
         else{
           diasHastaSiguiente = 3;
-          esDomingoPrimeraVez=true;
+          esDomingoPrimeraVez = true;
         }
         
         break;
@@ -108,14 +110,15 @@
         diasHastaSiguiente = 0; 
     }
     const fechaSiguiente = fechaBaseMoment.add(diasHastaSiguiente, 'days');
+    informar(contadorFilas,fechaBase,contadorCards);
     return fechaSiguiente.format('YYYY-MM-DD');
+    
   }
   
 
   // Función para generar una fila de componentes
   function generarFilaComponentes() {
     contadorFilas++;
-    
     const FilaHtml=`
       <div class="row g-2" id="${contadorFilas}">
         <div class="col-4 pb-2">
@@ -140,21 +143,20 @@
       </div>
     `;
     
-    const fechaBaseM = moment(fechaBase);
-    const dia = fechaBaseM.day();
-
+    var fechaBaseM = moment(fechaBase);
+    var dia = fechaBaseM.day();
     switch (dia) {
       case 0:
-        if(esDomingollenar)
-        {
-          llenarDropdown(`#ministra${contadorFilas}`, '../../domingos');
-          esDomingollenar=false;
-        }  
-        else{
-          llenarDropdown(`#ministra${contadorFilas}`, '../../predicadores');
-          esDomingollenar=true;
-        }
         
+        console.log("Dia",dia,esDomingoPrimeraVez);
+        if(esDomingoPrimeraVez==true)
+          llenarDropdown(`#ministra${contadorFilas}`, '../../domingos');
+
+        if(esDomingoPrimeraVez==false)
+          llenarDropdown(`#ministra${contadorFilas}`, '../../predicadores');
+          
+       
+        //console.log("dia"+dia+"| esDomingoPrimeraVez="+esDomingoPrimeraVez);
         
         break;
       case 3: 
@@ -171,10 +173,7 @@
 
     const fechaSiguiente = obtenerFechaSiguiente(fechaBase);
     fechaBase = fechaSiguiente;
-    console.log(fechaBase);
-    
-   
-   
+    informar(contadorFilas,fechaBase,contadorCards);
     return FilaHtml;
   }
 
@@ -182,7 +181,6 @@
   
 
   function llenarDropdown(selector, url) {
-    console.log(url);
     $.ajax({
       url: url,
       method: 'GET',
@@ -195,9 +193,10 @@
         });
       },
       error: function(error) {
-        console.error('Error en la llamada AJAX:', error);
+        console.error('Error en la llamada AJAX:', error+"selector="+selector);
       }
     });
+    informar(contadorFilas,fechaBase,contadorCards);
   }
 
 
@@ -212,13 +211,24 @@
     $(`#${cardId}`).remove();
     contadorCards=contadorCards-1;
     $("#contadorCards").val(contadorCards);
+    contadorFilas=contadorFilas-4;
+    fechaBase = $("#fechabase").val();
+    informar(contadorFilas,fechaBase,contadorCards);
   });
 
   $("#fechabase").change(function() {
     // Obtiene el valor del campo de fecha
     fechaBase = $(this).val();
     contadorFilas=0;
+    //console.log("esDomingoPrimeraVez="+esDomingoPrimeraVez);
+    informar(contadorFilas,fechaBase,contadorCards);
   });
+
+
+  function informar(contadorFilas,fechaBase,contadorCards){
+    $("#info").text("|ContadorFilas"+contadorFilas+"|fechaBase"+fechaBase+"|contadorCards"+contadorCards);
+
+  }
 
 });
 
