@@ -91,4 +91,7 @@ Route::get("miercoles",[HermanoController::class,"miercoles"])->name("miercoles"
 Route::get("sabados",[HermanoController::class,"sabados"])->name("sabados");
 Route::get("domingos",[HermanoController::class,"domingos"])->name("domingos");
 Route::get("predicadores",[HermanoController::class,"predicadores"])->name("predicadores");
+Route::get("participantes",[HermanoController::class,"participantes"])->name("get.participantes");
+Route::get("updateparcipantes",[DetallerolController::class,"updateparcipantes"])->name("update.parcipantes");
+Route::get("deletedetalle",[DetallerolController::class,"deletedetalle"])->name("delete.detalle");
 

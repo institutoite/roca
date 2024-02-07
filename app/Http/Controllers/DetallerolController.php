@@ -13,6 +13,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Illuminate\Support\Facades\View;
+use App\Http\Requests\RequestAjax;
 
 class DetallerolController extends Controller
 {
@@ -46,16 +47,40 @@ class DetallerolController extends Controller
             $fecha = $request->input("fecha$i");
             $preside = $request->input("preside$i");
             $ministra = $request->input("ministra$i");
+
+            switch ($i) {
+                case 1:
+                    $evento="miercoles";
+                    break;
+                
+                case 2:
+                    $evento="sabados";
+                    break;
+                
+                case 3:
+                    $evento="domingos";
+                    break;
+                
+                case 4:
+                    $evento="predicacion";
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+
             $detalle = new DetalleRol();
             $detalle->fecha = $fecha;
             $detalle->preside_id = $preside;
             $detalle->ministra_id = $ministra;
             $detalle->rol_id = $request->rol_id;
+            $detalle->evento = $evento;
 
             $detalle->save();
         }
 
-        return redirect()->route("hermano.index");
+        return redirect()->route("detallerol.ver",$detalle->rol_id);
     }
 
     /**
@@ -63,10 +88,11 @@ class DetallerolController extends Controller
      */
     public function show(Rol $rol)
     {
-        //setlocale(LC_TIME, 'es_ES');
-        //dd(config('app.locale'));//"en"  app\Http\Controllers\DetallerolController.php:60
-        //dd($rol->detalles);
+        
         $detalleAgrupados=$rol->detalles->chunk(4);
+        // $detalleAgrupados = $rol->detalles->filter(function ($detalle) {
+        //     return $detalle->estado == 1;
+        // })->chunk(4);
         return view("detallerol.show",compact("detalleAgrupados","rol"));
     }
 
@@ -89,52 +115,20 @@ class DetallerolController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Detallerol $detallerol)
+    public function deletedetalle(RequestAjax $request)
     {
-        //
+        $detalle=Detallerol::findOrFail($request->id_detalle);
+        $detalle->preside_id=1;
+        $detalle->ministra_id=1;
+        $detalle->save();
+        $nuevoPreside=Hermano::findOrFail(1);
+        $nuevoMinistro=Hermano::findOrFail(1);
+        $data=["nuevopreside"=>$nuevoPreside,"nuevoministro"=>$nuevoMinistro];
+        return response()->json($data);
     }
-    // public function descargar(Rol $rol)
-    // {
-    //     // Obtén la colección de hermanos con papeles
-    //     $hermanos = Hermano::has('papeles')->get();
     
-    //     // Configura DomPDF
-    //     $options = new Options();
-    //     $options->set('isHtml5ParserEnabled', true);
-    //     $options->set('isPhpEnabled', true);
-    
-    //     $dompdf = new Dompdf($options);
-    
-    //     // Prepara los datos generales para la vista
-    //     $data = [
-    //         'title' => 'Mi primer PDF',
-    //         'content' => 'Contenido del PDF...',
-    //         'rol' => $rol,
-    //         'detalleAgrupados' => $rol->detalles->chunk(4),
-    //     ];
-    
-    //     // Itera sobre cada hermano y agrega su contenido a la vista
-    //     foreach ($hermanos as $hermano) {
-    //         $data['hermano'] = $hermano;  // Pasa el hermano actual a la vista
-    
-    //         // Carga la vista con los datos
-    //         $html = view('detallerol.descargarrol', $data)->render();
-    
-    //         // Carga el HTML en DomPDF
-    //         $dompdf->loadHtml($html);
-    
-    //         // Establece el tamaño de la página (puedes ajustarlo según tus necesidades)
-    //         $dompdf->setPaper('A4', 'portrait');
-    
-    //         // Renderiza la página
-    //         $dompdf->render();
-    //     }
-    
-    //     // Guarda o muestra el PDF, según tus necesidades
-    //     $dompdf->stream('archivo.pdf', ['Attachment' => 0]);
-    // }
     public function descargar(Rol $rol){
-        $hermanos=Hermano::has('papeles')->get();
+        $hermanos=Hermano::has('papeles')->get()->skip(1);
         $data = [
             'title' => 'Mi primer PDF',
             'content' => 'Contenido del PDF...',
@@ -145,26 +139,18 @@ class DetallerolController extends Controller
 
         $pdf = PDF::loadView('detallerol.descargarrol', $data);
     
-        return $pdf->download('archivo.pdf');
+        return $pdf->download($rol->mes."_".$rol->gestion.'.pdf');
+    }
+
+    public function updateparcipantes(RequestAjax $request){
+        $detalle=Detallerol::findOrFail($request->id_detalle);
+        $detalle->preside_id=$request->id_presididor;
+        $detalle->ministra_id=$request->id_ministro;
+        $detalle->save();
+        $nuevoPreside=Hermano::findOrFail($detalle->preside_id);
+        $nuevoMinistro=Hermano::findOrFail($detalle->ministra_id);
+        $data=["nuevopreside"=>$nuevoPreside,"nuevoministro"=>$nuevoMinistro];
+        return response()->json($data);
     }
 }
 
-// $options = new Options();
-// $options->set('isHtml5ParserEnabled', true);
-// $options->set('isPhpEnabled', true);
-
-// $dompdf = new PDF($options);
-
-// foreach ($hermanos as $hermano) {
-//     // Inicializa la vista de Blade con el nombre actual
-//     $view = View::make('detallerol.descargarrol', ['hermano' => $hermano]);
-
-//     // Renderiza la página
-//     $html = $view->render();
-//     $dompdf->loadHtml($html);
-//     $dompdf->setPaper('letter', 'portrait');
-//     // $dompdf->render();
-
-//     // Agrega una nueva página para el siguiente hermano
-//     $dompdf->addPage();
-// }

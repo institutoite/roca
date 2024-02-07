@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('detallerols', function (Blueprint $table) {
             $table->id();
             $table->date("fecha");
+            $table->string("evento");
+            $table->boolean("estado")->default(1);
 
             $table->unsignedBigInteger("preside_id");
             $table->foreign("preside_id")->references("id")->on("hermanos");

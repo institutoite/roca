@@ -14,6 +14,7 @@ class HermanoSeeder extends Seeder
     public function run(): void
     {
         $hermanos = [
+            ['nombre' => 'SIN', 'apellidos' => 'ASINGAR AUN'],
             ['nombre' => 'Alvaro', 'apellidos' => 'Mamani'],
             ['nombre' => 'Carlos', 'apellidos' => 'Jaramillo'],
             ['nombre' => 'Carmelo', 'apellidos' => 'Illisca'],

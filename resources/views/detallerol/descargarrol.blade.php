@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Rol</title>
     <style>
 /* pdf-styles.css */
 
@@ -21,11 +21,17 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-bottom: 2px;
         }
-
+        .encabezado{
+            margin-bottom: 10px;
+            
+            /* background: rgba(38, 186, 165, 0.8); */
+        }
+       
         th, td {
             border: 1px solid #ddd;
-            padding: 5px;
+            padding: 3px;
             text-align: left;
             size: 15px;
         }
@@ -38,6 +44,16 @@
             background: rgb(7, 237, 95);
             color: black;
         }
+        .titulo{
+            background: rgba(38, 186, 165,0.3);
+            color: black;
+            border:2px solid rgba(55, 95, 122,0.5);
+        }
+        .dato{
+            background: rgba(38, 186, 165,0.1);
+            color: black;
+            border:2px solid rgba(55, 95, 122,0.5);
+        }
 
         /* Otros estilos personalizados según tus necesidades */
 
@@ -47,8 +63,23 @@
 <body>
     @foreach ($hermanos as $hermano)
         <div class="page">
-            <h1>{{  $rol->mes." ". $rol->gestion." ". $hermano->nombre." ". $hermano->apellidos}}</h1>
-            <p>Rol de hermanos que presiden y ministran</p>
+            <table class="encabezado">
+                <tr>
+                    <th class="titulo" >HERMANO</th>
+                    <td class="dato" colspan="3">{{  $hermano->nombre." ". $hermano->apellidos }}</td>
+                </tr>
+                <tr>
+                    <th class="titulo">MES</th>
+                    <td class="dato">{{ $rol->mes }}</td>
+                    <th class="titulo">GESTION</th>
+                    <td class="dato">{{ $rol->gestion }}</td>
+
+                </tr>
+               
+                
+            </table>
+            {{-- <h2>{{   $hermano->nombre." ". $hermano->apellidos}}</h2> --}}
+            
             <div class="card">
                 
             
@@ -73,16 +104,17 @@
 
                                     @switch($loop->iteration)
                                         @case(1)
-                                            <td>{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }} [Ministerio]</td>
+                                            <td>MIERCOLES [Ministerio]</td>
                                             @break
                                         @case(2)
-                                            <td>{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }}[Oracion]</td>
+                                            <td>SÁBADO[Oración]</td>
                                             @break
                                         @case(3)
-                                            <td>{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }}[Ministerio]</td>
+                                            <td>DOMINGO[Ministerio]</td>
                                             @break
                                         @case(4)
-                                            <td>{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }}[Predicacion]</td>
+                                            <td>DOMINGO[Predicación]</td>
+                                            {{-- <td>{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }}[Predicacion]</td> --}}
                                             @break
                                         @default
                                             
@@ -108,7 +140,7 @@
                             @endforeach
                         </table>
                         
-                        <hr>
+                        {{-- <hr> --}}
                     @endforeach
                 </div>
             </div>

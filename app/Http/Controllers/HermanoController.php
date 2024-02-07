@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Hermano;
 use App\Models\Papel;
 use App\Http\Requests\StoreHermanoRequest;
-use App\Http\Requests\UpdateHermanoRequest;
+use App\Models\Detallerol;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateHermanoRequest;
+use App\Http\Requests\RequestAjax;
 
 class HermanoController extends Controller
 {
@@ -158,5 +160,36 @@ class HermanoController extends Controller
             $query->where('papel', 'PREDICACION');
         })->get();
         return response()->json($predicadores);
+    }
+
+    public function participantes(RequestAjax $request){
+        $detalle = Detallerol::findOrFail($request->id_detalle);
+        $evento = $detalle->evento;
+        $presididores=$this->presididores();
+
+        $preside=Hermano::findOrFail($detalle->preside_id);
+        $ministra=Hermano::findOrFail($detalle->ministra_id);
+
+        switch ($evento) {
+            case "miercoles":
+                $ministros=$this->miercoles();
+                break;
+            case "sabados":
+                $ministros=$this->sabados();
+                break;
+            case "domingos":
+                $ministros=$this->domingos();
+                break;
+            case "predicacion":
+                $ministros=$this->predicadores();
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+        $data=["presididores"=>$presididores,"ministros"=>$ministros,"ministra"=>$ministra,"preside"=>$preside];
+
+        return response()->json($data);
     }
 }

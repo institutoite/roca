@@ -1,4 +1,48 @@
-$predicadores = Hermano::whereHas('papeles', function ($query) {
-            $query->where('papel', 'PREDICACION');
+use App\Models\Categoria;
+use App\Models\Producto;
+
+
+
+ $presididores = Hermano::whereHas('papeles', function ($query) {
+            $query->where('papel', 'PRESIDE');
         })->get();
-        return response()->json($predicadores);
+use App\Models\Categoria;
+use App\Models\Producto;
+
+
+
+$detalleAgrupados = $rol->detalles->filter(function ($detalle) {
+    return $detalle->estado == 1;
+})->chunk(4);
+use App\Models\Categoria;
+use App\Models\Producto;
+
+$rol=Rol::find(1);
+
+$detalleAgrupados = $rol->detalles->filter(function ($query) {
+            $query->where('estado', 1);
+        })->chunk(4);
+use App\Models\Categoria;
+use App\Models\Producto;
+
+$rol=Rol::find(1);
+
+$detalleAgrupados = $rol->detalles->filter(function ($query) {
+            $query->where('estado', 1);
+        })->chunk(4);
+use App\Models\Categoria;
+use App\Models\Producto;
+
+
+
+$detalleAgrupados = $rol->detalles->filter(function ($detalle) {
+    return $detalle->estado == 1;
+})->chunk(4);
+use App\Models\Categoria;
+use App\Models\Producto;
+
+
+$rol=Rol::find(1);
+$detalleAgrupados = $rol->detalles->filter(function ($detalle) {
+    return $detalle->estado == 1;
+})->chunk(4);
