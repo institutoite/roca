@@ -10,59 +10,66 @@
 
 @section('content')
     <div class="card">
-        <a href="{{ route('descargar.rol',$rol->id )}}">Descargar</a>
-        <div class="card-header">
-            {{  $rol->mes." ". $rol->gestion}}
+        
+        <div class="card-header d-flex justify-content-between">
+            <a class="btn btn-success" href="{{ route('descargar.rol', $rol->id )}}">Descargar</a>
+            <h2>{{ strtoupper($rol->mes." ".$rol->gestion) }}</h2>
         </div>
         <div class="card-body">
             
             @foreach($detalleAgrupados as $grupo)
             <hr>
-                <table class="table table-bordered table-hover table-striped">
-                    <thead>
-                        <tr class="table-secondary">
-                            <th>Fecha</th>
-                            <th>Dia</th>
-                            <th>Preside</th>
-                            <th>Ministra</th>
-                            <th>options</th>
-                        </tr>
-                    </thead>
-                    @foreach($grupo as $detalle)
-                        <tr id="{{ $detalle->id }}">
-                            <td>{{ $detalle->fecha }}</td>
-                            {{-- <td>{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }}</td> --}}
-                            @switch($loop->iteration)
-                            @case(1)
-                                <td>MIERCOLES [Ministerio]</td>
-                                @break
-                            @case(2)
-                                <td>SÁBADO[Oración]</td>
-                                @break
-                            @case(3)
-                                <td>DOMINGO[Ministerio]</td>
-                                @break
-                            @case(4)
-                                <td>DOMINGO[Predicación]</td>
-                                {{-- <td>{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }}[Predicacion]</td> --}}
-                                @break
-                            @default
-                                
-                        @endswitch
-                            <td>{{ $detalle->hermanopreside->nombre.' '.$detalle->hermanopreside->apellidos }}</td>
-                            <td>{{ $detalle->hermanoministra->nombre.' '.$detalle->hermanoministra->apellidos }}</td>
-                            <td>
-                                <i class="editar fa-solid fa-pen-to-square text-warning"></i>
-                                &nbsp;
-                                <i class="eliminar fa-solid fa-trash-can text-danger"></i>
-                            </td>
-                        </tr>
-                    @endforeach
-                </table>
-            @endforeach
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                            <tr class="table-secondary">
+                                <th>Fecha</th>
+                                <th>Dia</th>
+                                <th>Preside</th>
+                                <th>Ministra</th>
+                                <th>options</th>
+                            </tr>
+                        </thead>
+                        @foreach($grupo as $detalle)
+                            <tr id="{{ $detalle->id }}">
+                                <td>{{ $detalle->fecha }}</td>
+                                {{-- <td>{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }}</td> --}}
+                                @switch($loop->iteration)
+                                    @case(1)
+                                        <td>MIERCOLES [Ministerio]</td>
+                                        @break
+                                    @case(2)
+                                        <td>SÁBADO[Oración]</td>
+                                        @break
+                                    @case(3)
+                                        <td>DOMINGO[Ministerio]</td>
+                                        @break
+                                    @case(4)
+                                        <td>DOMINGO[Predicación]</td>
+                                        {{-- <td>{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }}[Predicacion]</td> --}}
+                                        @break
+                                    @default
+                                        
+                                @endswitch
+                                <td>{{ $detalle->hermanopreside->nombre.' '.$detalle->hermanopreside->apellidos }}</td>
+                                <td>{{ $detalle->hermanoministra->nombre.' '.$detalle->hermanoministra->apellidos }}</td>
+                                <td>
+                                    <i class="editar fa-solid fa-pen-to-square text-warning"></i>
+                                    &nbsp;
+                                    <i class="eliminar fa-solid fa-trash-can text-danger"></i>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+                @endforeach
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a class="btn btn-success" href="{{ route('descargar.rol', $rol->id )}}">Descargar</a>
+                <p>Desarrollado por David Flores</p>
+            </div>
         </div>
     </div>
-
     {{-- modal para editar el rol  --}}
     <div class="modal fade" id="formeditarrol" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
