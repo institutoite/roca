@@ -5,6 +5,7 @@ use App\Http\Controllers\HermanoController;
 use App\Http\Controllers\PapelController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\DetalleRolController;
+use App\Http\Controllers\PistaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,3 +96,9 @@ Route::get("participantes",[HermanoController::class,"participantes"])->name("ge
 Route::get("updateparcipantes",[DetallerolController::class,"updateparcipantes"])->name("update.parcipantes");
 Route::get("deletedetalle",[DetallerolController::class,"deletedetalle"])->name("delete.detalle");
 
+Route::get("ministerios",[PistaController::class,"index"])->name("ministerios.index");
+Route::delete('predica/{pista}', [PistaController::class, 'destroy'])->name('pista.destroy');
+Route::get('predica/edit/{pista}', [PistaController::class, 'edit'])->name('pista.edit');
+Route::get('predica/create', [PistaController::class, 'create'])->name('pista.create');
+Route::post('pista/store', [PistaController::class, 'store'])->name('pista.store');
+Route::put('pista/{pista}/update', [PistaController::class, 'update'])->name('pista.update');

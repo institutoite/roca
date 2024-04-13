@@ -30,6 +30,7 @@ class DetallerolController extends Controller
      */
     public function create(Rol $rol)
     {
+        
         $hermanos=Hermano::all();
         return view("detallerol.createsemanas",compact("rol","hermanos"));
     }
@@ -89,10 +90,12 @@ class DetallerolController extends Controller
     public function show(Rol $rol)
     {
         
+        
         $detalleAgrupados=$rol->detalles->chunk(4);
         // $detalleAgrupados = $rol->detalles->filter(function ($detalle) {
         //     return $detalle->estado == 1;
         // })->chunk(4);
+        
         return view("detallerol.show",compact("detalleAgrupados","rol"));
     }
 

@@ -1,48 +1,41 @@
-use App\Models\Categoria;
-use App\Models\Producto;
+use App\Models\Hermano;
+use App\Models\Pisa;
+use Carbon\Carbon;
 
+$pista=Pista::find(1);
+use App\Models\Hermano;
+use App\Models\Pisa;
+use Carbon\Carbon;
 
+$pista=Pista::find(1);
+$pista->autor;
+use App\Models\Hermano;
+use App\Models\Pisa;
+use Carbon\Carbon;
 
- $presididores = Hermano::whereHas('papeles', function ($query) {
-            $query->where('papel', 'PRESIDE');
-        })->get();
-use App\Models\Categoria;
-use App\Models\Producto;
+$pista=Pista::find(1);
+$pista->autor();
+use App\Models\Hermano;
+use App\Models\Pisa;
+use Carbon\Carbon;
 
+$pista=Pista::find(1);
+$pista->pista;
+use App\Models\Hermano;
+use App\Models\Pisa;
+use Carbon\Carbon;
 
+$pista=Pista::find(1);
+$pista->hermano;
+use App\Models\Hermano;
+use App\Models\Pisa;
+use Carbon\Carbon;
 
-$detalleAgrupados = $rol->detalles->filter(function ($detalle) {
-    return $detalle->estado == 1;
-})->chunk(4);
-use App\Models\Categoria;
-use App\Models\Producto;
+$pista=Pista::find(1);
+$pista->autore;
+use App\Models\Hermano;
+use App\Models\Pisa;
+use Carbon\Carbon;
 
-$rol=Rol::find(1);
-
-$detalleAgrupados = $rol->detalles->filter(function ($query) {
-            $query->where('estado', 1);
-        })->chunk(4);
-use App\Models\Categoria;
-use App\Models\Producto;
-
-$rol=Rol::find(1);
-
-$detalleAgrupados = $rol->detalles->filter(function ($query) {
-            $query->where('estado', 1);
-        })->chunk(4);
-use App\Models\Categoria;
-use App\Models\Producto;
-
-
-
-$detalleAgrupados = $rol->detalles->filter(function ($detalle) {
-    return $detalle->estado == 1;
-})->chunk(4);
-use App\Models\Categoria;
-use App\Models\Producto;
-
-
-$rol=Rol::find(1);
-$detalleAgrupados = $rol->detalles->filter(function ($detalle) {
-    return $detalle->estado == 1;
-})->chunk(4);
+$pista=Pista::find(1);
+$pista->hermano;

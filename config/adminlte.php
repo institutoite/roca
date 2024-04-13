@@ -322,6 +322,52 @@ return [
             'url'  => 'roles',
             'icon' => 'fas fa-fw fa-user',
         ],
+        [
+            'text' => 'Predicas',
+            'url'  => 'roles',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Miministerio',
+                    'url'  => 'ministerios',
+                ],
+                [
+                    'text' => 'Prédicas',
+                    'url'  => 'predicaciones',
+                ],
+                [
+                    'text' => 'Ministerio Oración',
+                    'url'  => 'oraciones',
+                ],
+                
+            ],
+        
+        ],
+        [
+            'text' => 'Himnos alabanzas',
+            'url'  => 'roles',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Himnos y cánticos',
+                    'url'  => 'himnos',
+                ],
+                [
+                    'text' => 'Otro',
+                    'url'  => 'predicaciones',
+                ],
+                [
+                    'text' => 'Coros himnario',
+                    'url'  => 'oraciones',
+                ],
+                [
+                    'text' => 'Coros otros',
+                    'url'  => 'oraciones',
+                ],
+                
+            ],
+        
+        ],
         
      
     ],

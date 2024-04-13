@@ -20,6 +20,7 @@ class PapelSeeder extends Seeder
             ['papel' => 'PREDICACION'],
             ['papel' => 'MINISTERIO MIERCOLES'],
             ['papel' => 'MINISTERIO SABADO'],
+            ['papel' => 'MINISTRO'],
         ];
 
         DB::table('papels')->insert($papels);
@@ -34,13 +35,13 @@ class PapelSeeder extends Seeder
         $carlos->papeles()->attach([1,3,5]);
         
         $carmelo = Hermano::find(4);
-        $carmelo->papeles()->attach([2,3,4,5]);
+        $carmelo->papeles()->attach([2,3,4,5,6]);
         
         $daniel = Hermano::find(5);
         $daniel->papeles()->attach([1]);
 
         $david = Hermano::find(6);
-        $david->papeles()->attach([3,4,5]);
+        $david->papeles()->attach([3,4,5,6]);
         
         $diego = Hermano::find(7);
         $diego->papeles()->attach([1]);
@@ -49,13 +50,13 @@ class PapelSeeder extends Seeder
         $domingo->papeles()->attach([1]);
         
         $eliodoro = Hermano::find(9);
-        $eliodoro->papeles()->attach([2,3,4,5]);
+        $eliodoro->papeles()->attach([2,3,4,5,6]);
         
         $froilan = Hermano::find(10);
-        $froilan->papeles()->attach([3,4,5]);
+        $froilan->papeles()->attach([3,4,5,6]);
         
         $juan = Hermano::find(11);
-        $juan->papeles()->attach([2,3,4,5]);
+        $juan->papeles()->attach([2,3,4,5,6]);
         
         $marcial = Hermano::find(12);
         $marcial->papeles()->attach([3,4,5]);

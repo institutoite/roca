@@ -14,6 +14,11 @@ class Hermano extends Model
         $this->save();
     }
    
+    public function pistas()
+    {
+        return $this->hasMany(Pista::class);
+    }
+
     public function papeles()
     {
         return $this->belongsToMany(Papel::class)->withTimestamps();
