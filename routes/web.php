@@ -6,7 +6,7 @@ use App\Http\Controllers\PapelController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\DetalleRolController;
 use App\Http\Controllers\PistaController;
-
+use App\Models\Pista;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +19,8 @@ use App\Http\Controllers\PistaController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    $pistas= Pista::all();
+    return view('home',compact("pistas"));
 });
 
 Auth::routes();
@@ -102,3 +103,5 @@ Route::get('predica/edit/{pista}', [PistaController::class, 'edit'])->name('pist
 Route::get('predica/create', [PistaController::class, 'create'])->name('pista.create');
 Route::post('pista/store', [PistaController::class, 'store'])->name('pista.store');
 Route::put('pista/{pista}/update', [PistaController::class, 'update'])->name('pista.update');
+
+Route::get('buscar/ministerios', [PistaController::class, 'busqueda'])->name('search');

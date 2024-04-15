@@ -1,0 +1,394 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <h1>Countdown Timer</h1>
+    <div id="countdown"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>
+        // Función para mostrar el tiempo restante
+        function showCountdown(endTime) {
+            const countdownElement = document.getElementById('countdown');
+
+            // Actualiza el tiempo restante cada segundo
+            const timerInterval = setInterval(updateCountdown, 1000);
+
+            function updateCountdown() {
+                const currentTime = moment();
+                const remainingTime = moment.duration(endTime.diff(currentTime));
+
+                // Detiene el temporizador cuando el tiempo restante llega a cero
+                if (remainingTime.asSeconds() <= 0) {
+                    clearInterval(timerInterval);
+                    countdownElement.innerHTML = "¡Tiempo terminado!";
+                } else {
+                    const hours = Math.floor(remainingTime.asHours());
+                    const minutes = remainingTime.minutes();
+                    const seconds = remainingTime.seconds();
+                    countdownElement.innerHTML = `Tiempo restante: ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
+                }
+            }
+
+            // Ejecuta la función inicialmente para mostrar el tiempo restante al cargar la página
+            updateCountdown();
+        }
+
+        const tiempoString ='50:00'; // Tiempo en formato "mm:ss"
+        const [minutos, segundos] = tiempoString.split(':');
+        const horaActual = moment();
+        const totalSegundos = parseInt(minutos) * 60 + parseInt(segundos);
+        const horaObjetivo = horaActual.clone().add(totalSegundos, 'seconds');
+        const diferenciaTiempo = moment.duration(horaObjetivo.diff(horaActual));
+        const horasRestantes = Math.floor(diferenciaTiempo.asHours());
+        const minutosRestantes = diferenciaTiempo.minutes();
+        const segundosRestantes = diferenciaTiempo.seconds();
+        const endTime = moment().add(minutosRestantes, 'minutes').add(segundosRestantes, 'seconds');
+        showCountdown(endTime);
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+
+        #logoz {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .animate-logo {
+            opacity: 1;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        } 
+        
+        #logo {
+            display: block;
+            margin: 20px auto;
+            width: 350px; /* ajusta el tamaño según sea necesario */
+            border-radius: 50%; 
+        }
+        
+        #logos-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            justify-content: center;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-top: 20px;
+            margin-right: 20px;
+            opacity: 0;
+            border-radius: 50%; 
+            transition: opacity 0.5s ease-in-out;
+        }
+        #map-container {
+            width: 100%;
+            height: 400px; /* Altura del mapa */
+        }
+
+        /*productos*/
+        #productos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-gap: 20px;
+        }
+
+        .producto {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .producto img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /*pie de pagina */
+        footer {
+            background-color: #0590fa; /* Color de fondo */
+            color: #fff; /* Color de texto */
+            padding: 20px;
+            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Estilos para los enlaces */
+        footer a {
+            color: #fff; /* Color de los enlaces */
+            text-decoration: none; /* Quita el subrayado de los enlaces */
+        }
+
+        /* Cambia el color de los enlaces cuando se pasan sobre ellos */
+        footer a:hover {
+            color: #0590fa; /* Color de los enlaces al pasar el ratón sobre ellos */
+        }
+
+        /*titulos */
+        h2 {
+            background-color: #0590fa; /* Fondo negro */
+            color: #fff; /* Texto blanco */
+            padding: 10px; /* Espaciado interno */
+            text-align: center; /* Centrado del texto */
+            margin-top: 0; /* Elimina el margen superior predeterminado */
+        }
+        @media screen and (max-width: 500px) {
+            #logos-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        
+        
+        <div class="row">
+            <div class="col-12">
+                <img src="foto/logo.jpg" alt="Logo shalom" id="logo">
+                <h2 class="">¡Contáctanos con un solo Click! <br> Elvio Lopez Mendoza</h2>
+            </div>
+          
+
+        </div>
+
+        <div id="logos-container">
+            <img src="foto/facebook.png" alt="Logo de Facebook" class="logo">
+            <img src="foto/youtube.png" alt="Logo de YouTube" class="logo">
+            <img src="foto/tiktok.png" alt="Logo de TikTok" class="logo">
+            <img src="foto/whatsapp.png" alt="Logo de WhatsApp" class="logo">
+            <img src="foto/correo.png" alt="Logo de Correo electrónico" class="logo">
+            <img src="foto/instagram.png" alt="Logo de YouTube" class="logo">
+            <img src="foto/sms.png" alt="Logo de TikTok" class="logo">
+            <img src="foto/celular.webp" alt="Logo de WhatsApp" class="logo">
+            <img src="foto/messenger.png" alt="Logo de Correo electrónico" class="logo">
+            <img src="foto/web.png" alt="Logo de Correo electrónico" class="logo">
+            <img src="foto/ubicacion.png" alt="Logo de Correo electrónico" class="logo">
+            <img src="foto/descargar.png" alt="Logo de Correo electrónico" class="logo">
+        </div>
+        
+        <!-- Sección de Ubicación -->
+        <section id="productos">
+            <h2 class="">Nuestros servicios</h2>
+            <p>Nuestros servicios incluyen envíos y recolección de correspondencia 📦 puerta a puerta en todo el país</p>
+            <!-- Contenedor de los Productos -->
+            <div id="productos-container">
+                <!-- Producto 1 -->
+                <div class="producto">
+                    <img src="foto/1.jpg" alt="Producto 1">
+                    <h3>Producto 1</h3>
+                    <p>Descripción del Producto 1</p>
+                    
+                </div>
+                <!-- Producto 2 -->
+                <div class="producto">
+                    <img src="foto/2.jpg" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>Descripción del Producto 2</p>
+                    
+                </div>
+                <div class="producto">
+                    <img src="foto/8.jpeg" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>Descripción del Producto 2</p>
+                    
+                </div>
+                    <!-- Producto 2 -->
+                <div class="producto">
+                    <img src="foto/9.jpeg" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>Descripción del Producto 2</p>
+                    
+                </div>
+                    <!-- Producto 2 -->
+                <div class="producto">
+                    <img src="foto/10.jpeg" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>Descripción del Producto 2</p>
+                    
+                </div>
+                    <!-- Producto 2 -->
+                <div class="producto">
+                    <img src="foto/11.jpeg" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>Descripción del Producto 2</p>
+                    
+                </div>
+                <div class="producto">
+                    <img src="foto/12.jpeg" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>Descripción del Producto 2</p>
+                    
+                </div>
+                <div class="producto">
+                    <img src="foto/13.jpeg" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>Descripción del Producto 2</p>
+                    
+                </div>
+                <div class="producto">
+                    <img src="foto/14.jpeg" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>Descripción del Producto 2</p>
+                    
+                </div>
+                <div class="producto">
+                    <img src="foto/15.jpeg" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>Descripción del Producto 2</p>
+                    
+                </div>
+                <div class="producto">
+                    <img src="foto/16.jpeg" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>Descripción del Producto 2</p>
+                    
+                </div>
+                <div class="producto">
+                    <img src="foto/17.jpeg" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>Descripción del Producto 2</p>
+                    
+                </div>
+                <div class="producto">
+                    <img src="foto/18.jpeg" alt="Producto 2">
+                    <h3>Producto 2</h3>
+                    <p>Descripción del Producto 2</p>
+                    
+                </div>
+                    <!-- Producto 2 -->
+               
+                <!-- Agrega más productos aquí -->
+            </div>
+        </section>
+
+        <div class="contact-map-section col-lg-8 col-md-7 col-sm-12">
+            <div class="map-boxed mt-30">
+                <!--Map Outer-->
+                <div class="map-outer">
+                    
+                </div>
+            </div>
+        </div>
+        <section id="ubicacion">
+            <h2>Encuéntranos aquí en <br> SANTA CRUZ</h2>
+            <!-- Contenedor del Mapa -->
+            <div id="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1899.0231568478252!2d-63.158796264114144!3d-17.836463709524455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e98773c36e43%3A0x4084311e40955905!2sShalom%20Courier%20(Santa%20Cruz%20-%20Bolivia)!5e0!3m2!1ses!2sbo!4v1712530099136!5m2!1ses!2sbo" 
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+        <br>
+        <br>
+        <section id="ubicacion">
+            <h2>Encuéntranos aquí en <br> LA PAZ</h2>
+            <!-- Contenedor del Mapa -->
+            <div id="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d239.11112130415702!2d-68.141509!3d-16.486778!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f200a21b00789%3A0xf3d6432a492c2af3!2sC.%20Omasuyos%20372!5e0!3m2!1ses!2sbo!4v1712530707833!5m2!1ses!2sbo" 
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+        <br>
+        <br>
+        <section id="ubicacion">
+            <h2>Encuéntranos aquí en <br> COCHABAMBA</h2>
+            <!-- Contenedor del Mapa -->
+            <div id="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d475.9270134206043!2d-66.15282034970285!3d-17.391807393804086!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e373f82261cee9%3A0x7255cfc5d986f331!2sAv.%20Hero%C3%ADnas%200640%2C%20Cochabamba!5e0!3m2!1ses-419!2sbo!4v1712530775981!5m2!1ses-419!2sbo" 
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+        
+        <br>
+        <br>
+        <br>
+        <br>
+        <footer>
+            <div>
+                <p>Shalom COURIER – MENSAJERÍA – DELIVERY</p>
+                <p>Elvio López Mendoza - Gerente General</p>
+                <a href="https://wa.me/59177331160"> <p>WhatsApp: 77331160</p> </a>
+            </div>
+            <div>
+                <p>Facebook: <a href="https://www.facebook.com/ShalomCourierBolivia">Shalom Courier Bolivia</a></p>
+                <p>Instagram: <a href="https://www.instagram.com/ShalomCourierBolivia">Shalom Courier Bolivia</a></p>
+                <p>TikTok: <a href="https://www.tiktok.com/@ShalomCourierBolivia">Shalom Courier Bolivia</a></p>
+            </div>
+            <div>
+                <p>Correo: <a href="mailto:elviolopez@shalomcourier.com.bo">elviolopez@shalomcourier.com.bo</a></p>
+                <p>Pag web: <a href="https://www.shalomcourier.com.bo">www.shalomcourier.com.bo</a></p>
+                <p>Dirección: Zona Sur, Calle 10, Casa 10</p>
+            </div>
+        </footer>
+
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            $(".logo").each(function(index) {
+                $(this).delay(300 * index).animate({ opacity: 1 }, 800);
+            });
+            $(window).scroll(function() {
+                var windowTop = $(window).scrollTop();
+                var windowBottom = windowTop + $(window).height();
+                var logoTop = $("#logo").offset().top;
+                var logoBottom = logoTop + $("#logo").height();
+                
+                // Si el logotipo está dentro del viewport
+                if ((logoBottom >= windowTop) && (logoTop <= windowBottom)) {
+                    $("#logo").addClass("animate-logo");
+                }
+            });
+        });
+        
+        // Función para inicializar el mapa
+       /* function initMap() {
+            // Coordenadas del lugar (por ejemplo, la ubicación de tu empresa)
+            var ubicacion = { lat: 40.7128, lng: -74.0060 }; // Por ejemplo, Nueva York
+
+            // Crear un nuevo mapa en el contenedor especificado
+            var mapa = new google.maps.Map(document.getElementById('map-container'), {
+                zoom: 15, // Nivel de zoom del mapa
+                center: ubicacion // Centrar el mapa en la ubicación especificada
+            });
+
+            // Marcador para señalar la ubicación en el mapa
+            var marcador = new google.maps.Marker({
+                position: ubicacion,
+                map: mapa,
+                title: 'Nuestra Ubicación' // Título que se muestra al pasar el mouse sobre el marcador
+            });
+        }*/
+    </script>
+</body>
+</html>
