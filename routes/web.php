@@ -105,3 +105,9 @@ Route::post('pista/store', [PistaController::class, 'store'])->name('pista.store
 Route::put('pista/{pista}/update', [PistaController::class, 'update'])->name('pista.update');
 
 Route::get('buscar/ministerios', [PistaController::class, 'busqueda'])->name('search');
+Route::get('quienessomos', function(){
+    return view("quienes");
+})->name('quienessomos');
+Route::get('actividades', function(){
+    return view("actividades");
+})->name('actividades');

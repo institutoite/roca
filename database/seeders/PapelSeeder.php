@@ -70,5 +70,9 @@ class PapelSeeder extends Seeder
         $wily = Hermano::find(15);
         $wily->papeles()->attach([1,3,5]);
         
+        $filemon = Hermano::find(16);
+        $filemon->papeles()->attach([6]);
+
+        
     }
 }

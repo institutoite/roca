@@ -29,6 +29,7 @@ class HermanoSeeder extends Seeder
             ['nombre' => 'Mario', 'apellidos' => 'Alarcon'],
             ['nombre' => 'Vicente', 'apellidos' => 'Alejandro'],
             ['nombre' => 'Wily', 'apellidos' => 'Garnica'],
+            ['nombre' => 'Filemon', 'apellidos' => 'Mamani'],
             // Agrega más registros según sea necesario
         ];
 

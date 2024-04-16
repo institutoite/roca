@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('pistas', function (Blueprint $table) {
             $table->id();
-
             $table->string('nombre', 100)->default("Sin titulo");
             $table->string('audio', 100)->default("sinpista.mp3");
             $table->string('foto', 100)->default("sinfoto.png");
             $table->dateTime('fureproduccion')->nullable();
             $table->integer('click')->unsigned()->default(1);
             $table->boolean('estado')->default(1);
-
+            $table->unsignedBigInteger("genero_id")->default(1);
+            $table->foreign("genero_id")->references("id")->on("generos");
             $table->unsignedBigInteger("hermano_id");
             $table->foreign("hermano_id")->references("id")->on("hermanos");
 
