@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark fondoTurqueza">
     <div class="container">
-        <a class="navbar-brand" href="#">Shalom</a>
+        <a class="navbar-brand" href="#">CNSJ</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -16,10 +16,10 @@
                     <a class="nav-link textoLinks" href="/">Inicio</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0" action="{{ route('search') }}" method="GET">
+            {{-- <form class="form-inline my-2 my-lg-0" action="{{ route('search') }}" method="GET">
                 <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" name="query">
                 <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Buscar</button>
-            </form>
+            </form> --}}
             @guest
             <!-- Mostrar solo si el usuario no está autenticado -->
             <a href="{{ route('login') }}" class="nav-link">Iniciar Sesión</a>

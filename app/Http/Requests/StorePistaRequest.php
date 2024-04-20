@@ -22,7 +22,11 @@ class StorePistaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nombre' => ['required','string','max:100','min:10'],
+            'audio' => 'required|string|max:50000', // El campo audio debe ser una cadena de máximo 100 caracteres
+            'foto' => 'required|string|max:5000', // El campo foto debe ser una cadena de máximo 100 caracteres
+            'hermano_id' => 'required|exists:hermanos,id', // El campo he
         ];
     }
 }
+

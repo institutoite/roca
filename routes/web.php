@@ -7,6 +7,10 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\DetalleRolController;
 use App\Http\Controllers\PistaController;
 use App\Models\Pista;
+use App\Models\Hermano;
+
+
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +24,10 @@ use App\Models\Pista;
 
 Route::get('/', function () {
     $pistas= Pista::all();
-    return view('home',compact("pistas"));
+    $ministros = Hermano::whereHas('papeles', function ($query) {
+        $query->where('papel', 'MINISTRO');
+    })->get();
+    return view('home',compact("pistas","ministros"));
 });
 
 Auth::routes();
