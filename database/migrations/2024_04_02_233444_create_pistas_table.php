@@ -23,7 +23,6 @@ return new class extends Migration
             $table->foreign("genero_id")->references("id")->on("generos");
             $table->unsignedBigInteger("hermano_id");
             $table->foreign("hermano_id")->references("id")->on("hermanos");
-
             $table->timestamps();
         });
     }
