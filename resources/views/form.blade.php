@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="form-floating mb-3">
@@ -6,6 +7,14 @@
         </div>
     </div>
 </div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    @error('nombre')
+        <span class="text-danger"> {{ $message}}</span>
+    @enderror
+</div>
+
+
+
 <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="form-floating mb-3">
@@ -16,16 +25,27 @@
         </div>
     </div>
 </div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    @error('foto')
+        <span class="text-danger"> {{ $message}}</span>
+    @enderror
+</div>
+
+
 <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="form-floating mb-3">
-            
             <div class="mb-3">
                 <label for="pista" class="form-label">Seleccione Audio</label>
                 <input type="file" class="form-control form-control-file" id="pista" name="pista">
-              </div>
+            </div>
         </div>
     </div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    @error('audio')
+        <span class="text-danger"> {{ $message}}</span>
+    @enderror  
 </div>
 
 <div class="row">
@@ -41,6 +61,12 @@
         </div>
     </div>
 </div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    @error('hermano_id')
+        <span class="text-danger"> {{ $message}}</span>
+    @enderror
+</div>
+
 
 <div class="text-center">
     <div class="mb-3">

@@ -58,32 +58,6 @@ class PistaSeeder extends Seeder
             'click' => random_int(10,1500),
             'estado' => 1,
         ]);
-        DB::table('pistas')->insert([
-            'nombre' => 'ABRES CAMINO',
-            'foto' => 'abrescamino.jpeg',
-            'hermano_id' => 11,
-            'audio'=>'abrescamino.mp3',
-            'fureproduccion' => now(), // Puedes ajustar la fecha y hora según sea necesario
-            'click' => random_int(10,1500),
-            'estado' => 1,
-        ]);
-        DB::table('pistas')->insert([
-            'nombre' => 'AL FINAL',
-            'foto' => 'final.jpg',
-            'hermano_id' => 11,
-            'audio'=>'final.mp3',
-            'fureproduccion' => now(), // Puedes ajustar la fecha y hora según sea necesario
-            'click' => random_int(10,1500),
-            'estado' => 1,
-        ]);
-        DB::table('pistas')->insert([
-            'nombre' => 'CHIQUITITA',
-            'foto' => 'chiquitita.jpg',
-            'hermano_id' => 11,
-            'audio'=>'chiquitita.mp3',
-            'fureproduccion' => now(), // Puedes ajustar la fecha y hora según sea necesario
-            'click' => random_int(10,1500),
-            'estado' => 1,
-        ]);
+
     }
 }
