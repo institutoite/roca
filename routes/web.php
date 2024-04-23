@@ -118,3 +118,10 @@ Route::get('quienessomos', function(){
 Route::get('actividades', function(){
     return view("actividades");
 })->name('actividades');
+
+
+Route::get('users/{id}', function ($id) {
+    
+});
+
+Route::post('/guardar', [PistaControlador::class, 'guardarPistaAjax'])->name('guardar.pista.ajax');

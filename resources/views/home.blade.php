@@ -19,8 +19,8 @@
                     FORMULARIO SUBIR MINISTERIO
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('pista.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+                    <form id="formulario"+>
+                        {{-- @csrf --}}
                         @include('form')
                     </form>
                 </div>
@@ -72,6 +72,27 @@
     <script src="{{ asset('js/home.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     
+    <script>
+        $(document).ready(function() {
+        $('#formulario').submit(function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: '{{ route("guardar.pista.ajax") }}',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    $('#mensaje').html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+    </script>
 </body>
 
 </html>

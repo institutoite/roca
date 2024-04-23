@@ -133,4 +133,23 @@ class PistaController extends Controller
     {
         //
     }
+    public function guardar(Request $request)
+    {
+        // Validación del formulario
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required|string|max:255',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'pista' => 'required|mimes:audio/mpeg,mpga,mp3,wav,|max:2048',
+            'hermano_id' => 'required|exists:ministros,id',
+            'g-recaptcha-response' => 'required|recaptcha'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()->all()], 422);
+        }
+
+        // Procesamiento del formulario y almacenamiento en la base de datos
+
+        return response()->json(['success' => '¡Formulario enviado correctamente!']);
+    }
 }
