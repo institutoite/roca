@@ -67,9 +67,16 @@
     @enderror
 </div>
 
+<div class="form-group mb-3">
+    <strong>google recaptcha</strong>
+    {!! NoCaptcha::renderJs() !!}
+    {!! NoCaptcha::display() !!}
+</div>
 
 <div class="text-center">
     <div class="mb-3">
-        <button type="submit" class="btn btn-outline-info fondoTurqueza">{{ isset($pista) ? 'Actualizar' : 'Guardar' }}</button>
+        <button type="submit" class="btn btn-outline-info fondoTurqueza"> 
+            {{ isset($pista) ? 'Actualizar' : 'Guardar' }}
+        </button>
     </div>
 </div>

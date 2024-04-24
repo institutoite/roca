@@ -124,4 +124,4 @@ Route::get('users/{id}', function ($id) {
     
 });
 
-Route::post('/guardar', [PistaControlador::class, 'guardarPistaAjax'])->name('guardar.pista.ajax');
+Route::post('pista/guardar', [PistaController::class, 'guardarPistaAjax'])->name('guardar.pista.ajax');

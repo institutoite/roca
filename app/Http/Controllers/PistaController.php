@@ -6,10 +6,13 @@ use App\Models\Pista;
 use App\Models\Hermano;
 use App\Http\Requests\StorePistaRequest;
 use App\Http\Requests\UpdatePistaRequest;
+use App\Http\Requests\RequestAjaxStorePista;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Validator; 
 
 class PistaController extends Controller
 {
@@ -133,23 +136,39 @@ class PistaController extends Controller
     {
         //
     }
-    public function guardar(Request $request)
+    public function guardarPistaAjax(RequestAjaxStorePista $request)
     {
-        // Validación del formulario
+        return $request->all();
         $validator = Validator::make($request->all(), [
-            'nombre' => 'required|string|max:255',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'pista' => 'required|mimes:audio/mpeg,mpga,mp3,wav,|max:2048',
-            'hermano_id' => 'required|exists:ministros,id',
-            'g-recaptcha-response' => 'required|recaptcha'
+            'nombre' => ['required','string','max:100','min:10'],
+            'audio' => 'required|string|max:50000', // El campo audio debe ser una cadena de máximo 100 caracteres
+            'foto' => 'required|string|max:5000', // El campo foto debe ser una cadena de máximo 100 caracteres
+            'hermano_id' => 'required|exists:hermanos,id', // El campo he
+            'g-recaptcha-response' =>'required|recaptcha'
+        ], [
+            'g-recaptcha-response.required' => 'Por favor, completa la verificación reCAPTCHA.',
+            'g-recaptcha-response.captcha' => 'La verificación reCAPTCHA no coincide. Por favor, inténtalo de nuevo.',
         ]);
-
+            
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()->all()], 422);
+            return redirect()->back()->withErrors($validator)->withInput();
         }
-
-        // Procesamiento del formulario y almacenamiento en la base de datos
-
         return response()->json(['success' => '¡Formulario enviado correctamente!']);
     }
 }
+
+// return $request->all();
+// // Validación del formulario
+// // $validator = Validator::make($request->all(), [
+// //     'nombre' => 'required|string|max:255',
+// //     'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+// //     'pista' => 'required|mimes:audio/mpeg,mpga,mp3,wav,|max:2048',
+// //     'hermano_id' => 'required|exists:ministros,id',
+// //     'g-recaptcha-response' => 'required|recaptcha'
+// // ]);
+
+// // if ($validator->fails()) {
+// //     return response()->json(['errors' => $validator->errors()->all()], 422);
+// // }
+
+// // Procesamiento del formulario y almacenamiento en la base de datos
