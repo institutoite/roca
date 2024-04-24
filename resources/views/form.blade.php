@@ -72,6 +72,11 @@
     {!! NoCaptcha::renderJs() !!}
     {!! NoCaptcha::display() !!}
 </div>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    @error('g-recaptcha-response')
+        <span class="text-danger"> {{ $message}}</span>
+    @enderror
+</div>
 
 <div class="text-center">
     <div class="mb-3">

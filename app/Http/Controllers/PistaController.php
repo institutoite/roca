@@ -138,7 +138,7 @@ class PistaController extends Controller
     }
     public function guardarPistaAjax(RequestAjaxStorePista $request)
     {
-        return $request->all();
+       // return $request->all();
         $validator = Validator::make($request->all(), [
             'nombre' => ['required','string','max:100','min:10'],
             'audio' => 'required|string|max:50000', // El campo audio debe ser una cadena de máximo 100 caracteres
