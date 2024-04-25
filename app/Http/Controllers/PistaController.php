@@ -13,6 +13,8 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator; 
+use Illuminate\Http\Request;
+
 
 class PistaController extends Controller
 {
@@ -41,14 +43,6 @@ class PistaController extends Controller
      */
     public function store(StorePistaRequest $request)
     {
-        // if ($file = $request->file('foto')) {
-        //     $fileName = hexdec(uniqid()).'.'.$file->getClientOriginalExtension();
-        //     $path = 'public/portadas/';
-
-        //     $file->storeAs($path, $fileName);
-        //     $validatedData['product_image'] = $fileName;
-        // }
-
         $pista = new Pista();
         $pista->nombre=$request->nombre;
         $pista->foto=$request->foto;
@@ -138,37 +132,26 @@ class PistaController extends Controller
     }
     public function guardarPistaAjax(RequestAjaxStorePista $request)
     {
-       // return $request->all();
-        $validator = Validator::make($request->all(), [
-            'nombre' => ['required','string','max:100','min:10'],
-            'audio' => 'required|string|max:50000', // El campo audio debe ser una cadena de máximo 100 caracteres
-            'foto' => 'required|string|max:5000', // El campo foto debe ser una cadena de máximo 100 caracteres
-            'hermano_id' => 'required|exists:hermanos,id', // El campo he
-            'g-recaptcha-response' =>'required|recaptcha'
-        ], [
-            'g-recaptcha-response.required' => 'Por favor, completa la verificación reCAPTCHA.',
-            'g-recaptcha-response.captcha' => 'La verificación reCAPTCHA no coincide. Por favor, inténtalo de nuevo.',
-        ]);
-            
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+        
+        $pista = new Pista();
+        $pista->nombre=$request->nombre;
+        $pista->foto=$request->foto;
+        $pista->hermano_id=$request->hermano_id;
+        $pista->click=0;
+        $pista->estado=0;
+        
+        if($request->file('foto')==true){
+            $foto = $request->file('foto');
+            $nombre=$this->GuardarImagenFisico($foto,'portadas');
+            $pista->foto=$nombre;
         }
-        return response()->json(['success' => '¡Formulario enviado correctamente!']);
+        
+        if($request->file('audio')){
+            $pistafile = $request->file('audio');
+            $nombrepista=$this->GuardarImagenFisico($pistafile,'audios');
+            $pista->audio = $nombrepista;
+        }
+        $pista->save();
+        return redirect()->route("inicio")->with("mensaje","Su audio a desplegado correctamente");
     }
 }
-
-// return $request->all();
-// // Validación del formulario
-// // $validator = Validator::make($request->all(), [
-// //     'nombre' => 'required|string|max:255',
-// //     'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-// //     'pista' => 'required|mimes:audio/mpeg,mpga,mp3,wav,|max:2048',
-// //     'hermano_id' => 'required|exists:ministros,id',
-// //     'g-recaptcha-response' => 'required|recaptcha'
-// // ]);
-
-// // if ($validator->fails()) {
-// //     return response()->json(['errors' => $validator->errors()->all()], 422);
-// // }
-
-// // Procesamiento del formulario y almacenamiento en la base de datos

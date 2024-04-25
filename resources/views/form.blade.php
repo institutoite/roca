@@ -36,8 +36,8 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="form-floating mb-3">
             <div class="mb-3">
-                <label for="pista" class="form-label">Seleccione Audio</label>
-                <input type="file" class="form-control form-control-file" id="pista" name="pista">
+                <label for="audio" class="form-label">Seleccione Audio</label>
+                <input type="file" class="form-control form-control-file" id="audio" name="audio">
             </div>
         </div>
     </div>

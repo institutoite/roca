@@ -19,12 +19,15 @@ class RequestAjaxStorePista extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+     */ 
     public function rules(): array
     {
         return [
-           
-            
+            'nombre' => ['required','string','max:100','min:5'],
+            'audio' => 'required|file|max:50000',
+            'foto' => 'required|file|max:5000',
+            'hermano_id' => 'required|exists:hermanos,id',
+            'g-recaptcha-response' => 'required',
         ];
     }
 }

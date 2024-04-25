@@ -28,7 +28,7 @@ Route::get('/', function () {
         $query->where('papel', 'MINISTRO');
     })->get();
     return view('home',compact("pistas","ministros"));
-});
+})->name("inicio");
 
 Auth::routes();
 
@@ -119,9 +119,7 @@ Route::get('actividades', function(){
     return view("actividades");
 })->name('actividades');
 
-
 Route::get('users/{id}', function ($id) {
-    
 });
 
 Route::post('pista/guardar', [PistaController::class, 'guardarPistaAjax'])->name('guardar.pista.ajax');
