@@ -130,30 +130,58 @@ class PistaController extends Controller
     {
         //
     }
-    public function guardarPistaAjax(RequestAjaxStorePista $request)
-    {
-        
-        $pista = new Pista();
-        $pista->nombre=$request->nombre;
-        $pista->foto=$request->foto;
-        $pista->hermano_id=$request->hermano_id;
-        $pista->click=0;
-        $pista->estado=0;
-        
-        if($request->file('foto')==true){
-            $foto = $request->file('foto');
-            $nombre=$this->GuardarImagenFisico($foto,'portadas');
-            $pista->foto=$nombre;
-        }
-        
-        if($request->file('audio')){
-            $pistafile = $request->file('audio');
-            $nombrepista=$this->GuardarImagenFisico($pistafile,'audios');
-            $pista->audio = $nombrepista;
-            return response()->json(['success' => true]);
-        }
-        $pista->save();
-        return response()->json(['success' => false]);
-        // return redirect()->route("inicio")->with("mensaje","Su audio a desplegado correctamente");
+
+    public function guardarPistaAjax(Request $request)
+{
+    $pista = new Pista();
+    $pista->nombre = $request->nombre;
+    $pista->hermano_id = $request->hermano_id;
+    $pista->click = 0;
+    $pista->estado = 0;
+    
+    if ($request->hasFile('foto')) {
+        $foto = $request->file('foto');
+        $nombre = $this->GuardarImagenFisico($foto, 'portadas');
+        $pista->foto = $nombre;
     }
+    
+    if ($request->hasFile('audio')) {
+        $pistafile = $request->file('audio');
+        $nombrepista = $this->GuardarImagenFisico($pistafile, 'audios');
+        $pista->audio = $nombrepista;
+    }
+    
+    if ($pista->save()) {
+        return response()->json(['success' => true]);
+    } else {
+        return response()->json(['success' => false]);
+    }
+}
+
+    // public function guardarPistaAjax(RequestAjaxStorePista $request)
+    // {
+        
+    //     $pista = new Pista();
+    //     $pista->nombre=$request->nombre;
+    //     $pista->foto=$request->foto;
+    //     $pista->hermano_id=$request->hermano_id;
+    //     $pista->click=0;
+    //     $pista->estado=0;
+        
+    //     if($request->file('foto')==true){
+    //         $foto = $request->file('foto');
+    //         $nombre=$this->GuardarImagenFisico($foto,'portadas');
+    //         $pista->foto=$nombre;
+    //     }
+        
+    //     if($request->file('audio')){
+    //         $pistafile = $request->file('audio');
+    //         $nombrepista=$this->GuardarImagenFisico($pistafile,'audios');
+    //         $pista->audio = $nombrepista;
+    //         return response()->json(['success' => true]);
+    //     }
+    //     $pista->save();
+    //     return response()->json(['success' => false]);
+    //     // return redirect()->route("inicio")->with("mensaje","Su audio a desplegado correctamente");
+    // }
 }
