@@ -44,9 +44,7 @@
         </div>
     </div>
     <br>
-    <progress id="progressBar" value="0" max="100"></progress>
-    <span id="status">0%</span>
-
+    
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         @error('audio')
             <span class="text-danger"> {{ $message}}</span>
@@ -86,8 +84,8 @@
 
     <div class="text-center">
         <div class="mb-3">
-            <button type="submit" class="btn btn-outline-info fondoTurqueza"> 
-                {{ isset($pista) ? 'Actualizar' : 'Guardar' }}
+            <button id="boton-guardar" type="submit" class="btn btn-outline-info fondoTurqueza"> 
+                {{'Guardar'}}
             </button>
         </div>
     </div>

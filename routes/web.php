@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    $pistas= Pista::all();
+    $pistas= Pista::where("estado",1)->get();
     $ministros = Hermano::whereHas('papeles', function ($query) {
         $query->where('papel', 'MINISTRO');
     })->get();
