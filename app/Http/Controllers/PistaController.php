@@ -150,8 +150,10 @@ class PistaController extends Controller
             $pistafile = $request->file('audio');
             $nombrepista=$this->GuardarImagenFisico($pistafile,'audios');
             $pista->audio = $nombrepista;
+            return response()->json(['success' => true]);
         }
         $pista->save();
-        return redirect()->route("inicio")->with("mensaje","Su audio a desplegado correctamente");
+        return response()->json(['success' => false]);
+        // return redirect()->route("inicio")->with("mensaje","Su audio a desplegado correctamente");
     }
 }

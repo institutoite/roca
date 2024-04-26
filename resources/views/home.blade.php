@@ -72,12 +72,7 @@
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
         
-
-        // function onSubmit(token) {
-        //     document.getElementById("formulario").submit();
-        // }
-
-
+   
 
         // document.addEventListener("submit",function(e){
         //     e.preventDefault();
@@ -96,23 +91,23 @@
 
 
         $(document).ready(function() {
-        // $('#formulario').submit(function(event) {
-        //     event.preventDefault();
-        //     var formData = new FormData(this);
-        //     $.ajax({
-        //         url: '{{ route("guardar.pista.ajax") }}',
-        //         type: 'POST',
-        //         data: formData,
-        //         processData: false,
-        //         contentType: false,
-        //         success: function(response) {
-        //             $('#mensaje').html(response);
-        //         },
-        //         error: function(xhr, status, error) {
-        //             console.error(xhr.responseText);
-        //         }
-        //     });
-        // });
+        $('#formulario').submit(function(event) {
+            event.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url: '{{ route("guardar.pista.ajax") }}',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    $('#mensaje').html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
     });
     </script>
 </body>

@@ -24,7 +24,7 @@ class RequestAjaxStorePista extends FormRequest
     {
         return [
             'nombre' => ['required','string','max:100','min:5'],
-            'audio' => 'required|file|max:50000',
+            'audio' => 'required|file|max:100000',
             'foto' => 'required|file|max:5000',
             'hermano_id' => 'required|exists:hermanos,id',
             'g-recaptcha-response' => 'required',

@@ -28,11 +28,11 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     @error('foto')
         <span class="text-danger"> {{ $message}}</span>
-    @enderror
-</div>
-
-
-<div class="row">
+        @enderror
+    </div>
+    
+    
+    <div class="row">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <div class="form-floating mb-3">
             <div class="mb-3">
@@ -42,6 +42,10 @@
         </div>
     </div>
 </div>
+<br>
+<progress id="progressBar" value="0" max="100"></progress>
+<span id="status">0%</span>
+
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     @error('audio')
         <span class="text-danger"> {{ $message}}</span>
@@ -77,6 +81,7 @@
         <span class="text-danger"> {{ $message}}</span>
     @enderror
 </div>
+
 
 <div class="text-center">
     <div class="mb-3">
