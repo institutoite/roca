@@ -9,7 +9,7 @@
         "anhskohbo/no-captcha": "^3.6",
         "barryvdh/laravel-dompdf": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
-        "jeroennoten/laravel-adminlte": "^3.9",
+        "jeroennoten/laravel-adminlte": "^3.11",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
