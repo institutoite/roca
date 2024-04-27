@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator; 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
+use Yajra\DataTables\Facades\DataTables;
+
 
 class PistaController extends Controller
 {
@@ -132,32 +136,45 @@ class PistaController extends Controller
     }
 
     public function guardarPistaAjax(Request $request)
-{
-    $pista = new Pista();
-    $pista->nombre = $request->nombre;
-    $pista->hermano_id = $request->hermano_id;
-    $pista->click = 0;
-    $pista->estado = 0;
-    
-    if ($request->hasFile('foto')) {
-        $foto = $request->file('foto');
-        $nombre = $this->GuardarImagenFisico($foto, 'portadas');
-        $pista->foto = $nombre;
-    }
-    
-    if ($request->hasFile('audio')) {
-        $pistafile = $request->file('audio');
-        $nombrepista = $this->GuardarImagenFisico($pistafile, 'audios');
-        $pista->audio = $nombrepista;
-    }
-    
-    if ($pista->save()) {
-        return response()->json(['success' => true]);
-    } else {
-        return response()->json(['success' => false]);
-    }
-}
+    {
+        $pista = new Pista();
+        $pista->nombre = $request->nombre;
+        $pista->hermano_id = $request->hermano_id;
+        $pista->click = 0;
+        $pista->estado = 0;
+        
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $nombre = $this->GuardarImagenFisico($foto, 'portadas');
+            $pista->foto = $nombre;
+        }
+        
+        if ($request->hasFile('audio')) {
+            $pistafile = $request->file('audio');
+            $nombrepista = $this->GuardarImagenFisico($pistafile, 'audios');
+            $pista->audio = $nombrepista;
+        }
+        
+        if ($pista->save()) {
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false]);
+        }
 
+    }
+
+    public function darAlta(Request $request){
+        $pista= Pista::findOrFail($request->pista_id);
+        $pista->estado=1;
+        $pista->save();
+        return response()->json(["respuesta"=>"Bien hecho: ".Auth::user()->name." Gracias por dar de alta este audio."]);
+    }
+    public function darBaja(Request $request){
+        $pista= Pista::findOrFail($request->pista_id);
+        $pista->estado=0;
+        $pista->save();
+        return response()->json(["respuesta"=>"Buen trabajo: ".Auth::user()->name." Gracias por dar de baja este audio."]);
+    }
     // public function guardarPistaAjax(RequestAjaxStorePista $request)
     // {
         

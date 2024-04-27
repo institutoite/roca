@@ -61,15 +61,10 @@
                                             <p class="card-text">{{ $pista->created_at }}</p>
                                         </div>
                                         <div class="card-footer">
-                                         
-                                       
-        
                                             <audio id="audio_{{ $loop->index }}" controls style="width: 100%;">
                                                 <source src="{{ asset('storage/audios/'.$pista->audio) }}" type="audio/mpeg">
                                                 Tu navegador no soporta el elemento de audio.
                                             </audio>
-        
-                                                 
                                         </div>
                                     </div>
                                 </div>

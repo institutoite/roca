@@ -110,6 +110,8 @@ Route::get('predica/edit/{pista}', [PistaController::class, 'edit'])->name('pist
 Route::get('predica/create', [PistaController::class, 'create'])->name('pista.create');
 Route::post('pista/store', [PistaController::class, 'store'])->name('pista.store');
 Route::put('pista/{pista}/update', [PistaController::class, 'update'])->name('pista.update');
+Route::get('pista/daralta', [PistaController::class, 'darAlta'])->name('pista.dar.alta');
+Route::get('pista/darbaja', [PistaController::class, 'darBaja'])->name('pista.dar.baja');
 
 Route::get('buscar/ministerios', [PistaController::class, 'busqueda'])->name('search');
 Route::get('quienessomos', function(){
