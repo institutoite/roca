@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HermanoController;
 use App\Http\Controllers\PapelController;
 use App\Http\Controllers\RolController;
-use App\Http\Controllers\DetalleRolController;
+use App\Http\Controllers\DetallerolController;
 use App\Http\Controllers\PistaController;
 use App\Models\Pista;
 use App\Models\Hermano;
@@ -86,11 +86,11 @@ Route::put('roles/{rol}', [RolController::class, 'update'])->name('rol.update');
 // Ruta para eliminar un rol
 Route::delete('roles/{rol}', [RolController::class, 'destroy'])->name('rol.destroy');
 
-Route::get('roles/{rol}/detalles', [DetalleRolController::class, 'index'])->name('roles.detalles.index');
-Route::get('detalle/{rol}/create', [DetalleRolController::class, 'create'])->name('detallerol.create');
-Route::post('roles/{rol}/detalles/store', [DetalleRolController::class, 'store'])->name('detallerol.store');
-Route::get('detallerol/ver/{rol}',[DetalleRolController::class,'show'])->name("detallerol.ver");
-Route::get("descargar/pdf/{rol}",[DetalleRolController::class,'descargar'])->name("descargar.rol");
+Route::get('roles/{rol}/detalles', [DetallerolController::class, 'index'])->name('roles.detalles.index');
+Route::get('detalle/{rol}/create', [DetallerolController::class, 'create'])->name('detallerol.create');
+Route::post('roles/{rol}/detalles/store', [DetallerolController::class, 'store'])->name('detallerol.store');
+Route::get('detallerol/ver/{rol}',[DetallerolController::class,'show'])->name("detallerol.ver");
+Route::get("descargar/pdf/{rol}",[DetallerolController::class,'descargar'])->name("descargar.rol");
 
 // endpoints 
 
