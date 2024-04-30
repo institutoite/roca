@@ -91,10 +91,7 @@ Route::get('detalle/{rol}/create', [DetallerolController::class, 'create'])->nam
 Route::post('roles/{rol}/detalles/store', [DetallerolController::class, 'store'])->name('detallerol.store');
 Route::get('detallerol/ver/{rol}',[DetallerolController::class,'show'])->name("detallerol.ver");
 Route::get("descargar/pdf/{rol}",[DetallerolController::class,'descargar'])->name("descargar.rol");
-
 // endpoints 
-
-
 Route::get("presididores",[HermanoController::class,"presididores"])->name("presididores");
 Route::get("miercoles",[HermanoController::class,"miercoles"])->name("miercoles");
 Route::get("sabados",[HermanoController::class,"sabados"])->name("sabados");

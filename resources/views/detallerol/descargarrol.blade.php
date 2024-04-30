@@ -33,7 +33,20 @@
             border: 1px solid #ddd;
             padding: 3px;
             text-align: left;
-            size: 15px;
+            size: 20px;
+        }
+
+        .alto5semanas{
+            height: 27px;
+        }
+        .alto4semanas{
+            height: 35px;
+        }
+        .alto3semanas{
+            height: 50px;
+        }
+        .alto{
+            height: 15px;
         }
 
         th {
@@ -43,16 +56,20 @@
         .resaltado{
             background: rgb(7, 237, 95);
             color: black;
+            font-weight: bold;
         }
         .titulo{
-            background: rgba(38, 186, 165,0.3);
+            
             color: black;
             border:2px solid rgba(55, 95, 122,0.5);
+            font-size: 1.7em;
         }
         .dato{
             background: rgba(38, 186, 165,0.1);
             color: black;
             border:2px solid rgba(55, 95, 122,0.5);
+            height: 30px;
+            font-size: 2em;
         }
 
         /* Otros estilos personalizados según tus necesidades */
@@ -66,17 +83,12 @@
             <table class="encabezado">
                 <tr>
                     <th class="titulo" >HERMANO</th>
-                    <td class="dato" colspan="3">{{  $hermano->nombre." ". $hermano->apellidos }}</td>
+                    <td class="dato">{{  $hermano->nombre." ". $hermano->apellidos }}</td>
                 </tr>
                 <tr>
                     <th class="titulo">MES</th>
-                    <td class="dato">{{ $rol->mes }}</td>
-                    <th class="titulo">GESTION</th>
-                    <td class="dato">{{ $rol->gestion }}</td>
-
+                    <td class="dato">{{ $rol->mes." ".$rol->gestion }}</td>
                 </tr>
-               
-                
             </table>
             {{-- <h2>{{   $hermano->nombre." ". $hermano->apellidos}}</h2> --}}
             
@@ -85,6 +97,25 @@
             
                 <div class="card-body">
                     
+                    @php
+                        $semanas=count($detalleAgrupados);
+                        switch ($semanas) {
+                            case 5:
+                                $clasealto="alto5semanas";
+                                break;
+                            case 4:
+                                $clasealto="alto4semanas";
+                                break;
+                            case 3:
+                                $clasealto="alto3semanas";
+                                break;
+                            default:
+                                $clasealto="alto";
+                                break;
+                        }
+
+                    @endphp
+
                     @foreach($detalleAgrupados as $grupo)
                     {{-- {{ $grupo }} --}}
                         <table class="table table-bordered table-hover table-striped">
@@ -100,21 +131,21 @@
                             @foreach($grupo as $detalle)
                                 <tr>
                                     
-                                    <td>{{ \Carbon\Carbon::parse($detalle->fecha)->isoFormat("L") }}</td>
+                                    <td class="{{ $clasealto }}">{{ \Carbon\Carbon::parse($detalle->fecha)->isoFormat("L") }}</td>
 
                                     @switch($loop->iteration)
                                         @case(1)
-                                            <td>MIERCOLES [Ministerio]</td>
+                                            <td class="{{ $clasealto }}">MIERCOLES [Ministerio]</td>
                                             @break
                                         @case(2)
-                                            <td>SÁBADO[Oración]</td>
+                                            <td class="{{ $clasealto }}">SÁBADO[Oración]</td>
                                             @break
                                         @case(3)
-                                            <td>DOMINGO[Ministerio]</td>
+                                            <td class="{{ $clasealto }}">DOMINGO[Ministerio]</td>
                                             @break
                                         @case(4)
-                                            <td>DOMINGO[Predicación]</td>
-                                            {{-- <td>{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }}[Predicacion]</td> --}}
+                                            <td class="{{ $clasealto }}">DOMINGO[Predicación]</td>
+                                            {{-- <td class="{{ $clasealto }}">{{ \Carbon\Carbon::parse($detalle->fecha)->formatLocalized('%A') }}[Predicacion]</td> --}}
                                             @break
                                         @default
                                             
@@ -122,17 +153,17 @@
                                         
                                     
                                     @if($detalle->hermanopreside->id==$hermano->id)
-                                        <td class="resaltado">
+                                        <td class="resaltado {{ $clasealto }}">
                                     @else
-                                        <td>
+                                        <td class="{{ $clasealto }}">
                                     @endif
                                         {{ $detalle->hermanopreside->nombre.' '.$detalle->hermanopreside->apellidos }}
                                     </td>
                                     
                                     @if ($detalle->hermanoministra->id==$hermano->id)
-                                        <td class="resaltado">
+                                        <td class="resaltado {{ $clasealto }}">
                                     @else
-                                        <td>
+                                        <td class="{{ $clasealto }}">
                                     @endif
                                         {{ $detalle->hermanoministra->nombre.' '.$detalle->hermanoministra->apellidos }}
                                     </td>
