@@ -91,74 +91,124 @@
     <script>
         
         $(document).ready(function() {
-                const status = document.getElementById('status');
+    const status = $('#status');
+    const formulario = $('#formulario');
+    const progressBar = $('#progressBar');
+    const mensajeExito = $('#mensaje-exito');
+    const mensajeFracaso = $('#mensaje-fracaso');
+    const botonSubirOtro = $('#boton-subir-otro');
 
-                document.getElementById("boton-subir-otro").addEventListener("click",function(event){
-                    document.getElementById('mensaje-exito').style.display="none";
-                    document.getElementById('mensaje-fracaso').style.display="none";
-                    document.getElementById('status').style.display = 'none';
-                    document.getElementById('progressBar').style.display = 'none';
-                    document.getElementById('formulario').style.display = 'block';
-                });
+    botonSubirOtro.click(function(event) {
+        mensajeExito.hide();
+        mensajeFracaso.hide();
+        status.hide();
+        progressBar.hide();
+        formulario.show();
+        botonSubirOtro.hide();
+        formulario[0].reset(); // Limpiar el formulario
+    });
 
-                document.getElementById('formulario').addEventListener('submit', function(event) {
-                    event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
-                    document.getElementById('progressBar').style.display = 'block';
-                    document.getElementById('formulario').style.display = 'none';
-                    document.getElementById('status').style.display = 'block';
-                    const formData = new FormData(this); // Obtén los datos del formulario
-                    // Crea una nueva instancia de XMLHttpRequest
-                    const xhr = new XMLHttpRequest();
+    formulario.submit(function(event) {
+    event.preventDefault(); // Evita que el formulario se envíe de forma predeterminada
+    mensajeFracaso.empty().hide();
+    // Validación de campos
+    const nombre = $('#nombre').val().trim();
+    const audio = $('#audio')[0].files[0];
+    const hermanoId = $('#hermano_id').val();
+    const recaptchaResponse = $('#g-recaptcha-response').val();
+    
+    if (nombre.length < 5 || nombre.length > 100) {
+        mostrarError('El nombre debe tener entre 5 y 100 caracteres.');
+        return;
+    }
 
-                    // Escucha el evento de finalización de la carga
-                    xhr.addEventListener('load', function() {
-                        if (xhr.status === 200) {
-                            const response = JSON.parse(xhr.responseText);
-                            if (response.success) {
-                                console.log('¡La pista se guardó correctamente!');
-                                document.getElementById('mensaje-exito').style.display="block";
-                                document.getElementById('formulario').style.display = 'none';
-                                document.getElementById('progressBar').style.display = 'none';
-                            } else {
-                                document.getElementById('mensaje-fracaso').style.display="block";
-                            }
-                        } else {
-                            console.error('Error:', xhr.statusText);
-                        }
-                    });
+    // Verificar si se ha seleccionado un archivo de audio
+    if (!audio) {
+        mostrarError('Por favor, seleccione un archivo de audio.');
+        return;
+    }
 
-                    // xhr.upload.addEventListener('progress', function(event) {
-                    //     console.log('Progreso:', event.loaded, '/', event.total);
-                    //     const percent = (event.loaded / event.total) * 100;
-                    //     progressBar.value = percent;
-                    //     status.textContent = percent.toFixed(2) + '%';
-                    // });
-                    xhr.upload.addEventListener('progress', function(event) {
-                        const percent = (event.loaded / event.total) * 100;
-                        progressBar.value = percent;
-                        status.innerHTML = percent.toFixed(2) + '%'; // Usar innerHTML en lugar de textContent
-                    });
+    // Verificar si el archivo es de tipo audio
+    if (!audio.type.startsWith('audio/')) {
+        mostrarError('El archivo seleccionado no es un archivo de audio válido.');
+        return;
+    }
 
-                    xhr.open('POST', '{{ route("guardar.pista.ajax") }}'); // Especifica la URL a la que se enviarán los datos
-                    xhr.send(formData); // Envía los datos del formulario
-                });
+    // Verificar el tamaño del archivo (en bytes)
+    const maxSize = 100 * 1024 * 1024; // 100 MB en bytes
+    if (audio.size > maxSize) {
+        mostrarError('El tamaño del archivo de audio no puede ser mayor a 100 MB.');
+        return;
+    }
 
-        });
+    if (!hermanoId) {
+        mostrarError('Por favor, seleccione un hermano.');
+        return;
+    }
+
+    if (!recaptchaResponse) {
+        mostrarError('Por favor, complete el captcha.');
+        return;
+    }
+
+    // Ocultar el formulario y mostrar la barra de progreso
+    formulario.hide();
+    progressBar.show();
+
+    // Crear formData y enviar datos
+    const formData = new FormData(this);
+    $.ajax({
+        type: 'POST',
+        url: '{{ route("guardar.pista.ajax") }}',
+        data: formData,
+        processData: false,
+        contentType: false,
+        xhr: function() {
+            const xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener('progress', function(event) {
+                if (event.lengthComputable) {
+                    const percent = (event.loaded / event.total) * 100;
+                    progressBar.val(percent);
+                    status.html(percent.toFixed(2) + '%');
+                }
+            }, false);
+            return xhr;
+        },
+        success: function(response) {
+            console.log(response);
+            if (response.success) {
+                console.log('¡La pista se guardó correctamente!');
+                mensajeExito.show();
+                progressBar.hide();
+                botonSubirOtro.show();
+            } else {
+                if (response.errors) {
+                    const errorMessages = Object.values(response.errors).join('<br>');
+                    mensajeFracaso.html(errorMessages);
+                } else {
+                    mensajeFracaso.html('Error al guardar la pista.');
+                }
+                mensajeFracaso.show();
+                formulario.show();
+                botonSubirOtro.hide();
+            }
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            console.error('Error:', errorThrown);
+        }
+    });
+});
+
+
+    // Función para mostrar errores
+    function mostrarError(mensaje) {
+        mensajeFracaso.html(mensaje);
+        mensajeFracaso.show();
+    }
+});
+
+
+
     </script>
 </body>
-
 </html>
-
-     {{-- $.ajax({
-    //     url: '{{ route("guardar.pista.ajax") }}',
-    //     type: 'POST',
-    //     data: formData,
-    //     processData: false,
-    //     contentType: false,
-    //     success: function(response) {
-    //         $('#mensaje').html(response);
-    //     },
-    //     error: function(xhr, status, error) {
-    //         console.error(xhr.responseText);
-    //     }
-    // }); --}}

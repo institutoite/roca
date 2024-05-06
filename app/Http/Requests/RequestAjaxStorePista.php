@@ -20,14 +20,14 @@ class RequestAjaxStorePista extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */ 
-    public function rules(): array
+    public function rules(): array  
     {
         return [
             'nombre' => ['required','string','max:100','min:5'],
-            'audio' => 'required|file|max:100000',
-            'foto' => 'required|file|max:5000',
+            'audio' => 'required|file|mimes:audio/mpeg,mpga,mp3,wav,aac|max:100000',
+            // 'foto' => 'required|file|max:5000',
             'hermano_id' => 'required|exists:hermanos,id',
-            'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'required|captcha',
         ];
     }
 }

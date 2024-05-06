@@ -135,8 +135,9 @@ class PistaController extends Controller
         //
     }
 
-    public function guardarPistaAjax(Request $request)
+    public function guardarPistaAjax(RequestAjaxStorePista $request)
     {
+        //return response()->json($request->all());
         $pista = new Pista();
         $pista->nombre = $request->nombre;
         $pista->hermano_id = $request->hermano_id;
