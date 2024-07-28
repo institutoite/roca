@@ -132,6 +132,7 @@ class DetallerolController extends Controller
     
     public function descargar(Rol $rol){
         $hermanos=Hermano::has('papeles')->get()->skip(1);
+        
         $data = [
             'title' => 'Mi primer PDF',
             'content' => 'Contenido del PDF...',

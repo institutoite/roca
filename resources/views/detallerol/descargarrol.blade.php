@@ -131,7 +131,7 @@
                             @foreach($grupo as $detalle)
                                 <tr>
                                     
-                                    <td class="{{ $clasealto }}">{{ \Carbon\Carbon::parse($detalle->fecha)->isoFormat("L") }}</td>
+                                    <td class="{{ $clasealto }}">{{ \Carbon\Carbon::parse($detalle->fecha)->isoFormat("DD-MM-Y") }}</td>
 
                                     @switch($loop->iteration)
                                         @case(1)

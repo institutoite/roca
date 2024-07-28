@@ -3,39 +3,37 @@ use App\Models\Pisa;
 use Carbon\Carbon;
 
 $pista=Pista::find(1);
-use App\Models\Hermano;
-use App\Models\Pisa;
-use Carbon\Carbon;
+$pista->hermano;
 
-$pista=Pista::find(1);
-$pista->autor;
-use App\Models\Hermano;
-use App\Models\Pisa;
-use Carbon\Carbon;
-
-$pista=Pista::find(1);
-$pista->autor();
-use App\Models\Hermano;
-use App\Models\Pisa;
-use Carbon\Carbon;
-
-$pista=Pista::find(1);
-$pista->pista;
+$hermanos = Hermano::whereNotIn('id', [1,6])
+                    ->has('papeles')
+                    ->get();
 use App\Models\Hermano;
 use App\Models\Pisa;
 use Carbon\Carbon;
 
 $pista=Pista::find(1);
 $pista->hermano;
-use App\Models\Hermano;
-use App\Models\Pisa;
-use Carbon\Carbon;
 
-$pista=Pista::find(1);
-$pista->autore;
+$hermanos=Hermano::has('papeles')->get()->skip(1)->skip(6);
 use App\Models\Hermano;
 use App\Models\Pisa;
 use Carbon\Carbon;
 
 $pista=Pista::find(1);
 $pista->hermano;
+
+$hermanos=Hermano::has('papeles')->get()->skip([1,6]);
+use App\Models\Hermano;
+use App\Models\Pisa;
+use Carbon\Carbon;
+
+$pista=Pista::find(1);
+$pista->hermano;
+
+$hermanos = Hermano::whereHas('papeles', function ($query) {
+                $query->where('id', '!=', 6);
+            })
+            ->has('papeles')
+            ->skip(1)
+            ->get();
