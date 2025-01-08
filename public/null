@@ -1,41 +1,432 @@
-use App\Models\Hermano;
-use App\Models\Pisa;
-use Carbon\Carbon;
+use App\Models\User;
 
-$pista=Pista::find(1);
-use App\Models\Hermano;
-use App\Models\Pisa;
-use Carbon\Carbon;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-06'; 
+$saldo = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) - 
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as saldo
+        ","SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) as ldfd")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+use App\Models\User;
 
-$pista=Pista::find(1);
-$pista->autor;
-use App\Models\Hermano;
-use App\Models\Pisa;
-use Carbon\Carbon;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-06'; 
+$saldo = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) - 
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as saldo
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+use App\Models\User;
 
-$pista=Pista::find(1);
-$pista->autor();
-use App\Models\Hermano;
-use App\Models\Pisa;
-use Carbon\Carbon;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-06'; 
+$saldo = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) - 
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as saldo
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
 
-$pista=Pista::find(1);
-$pista->pista;
-use App\Models\Hermano;
-use App\Models\Pisa;
-use Carbon\Carbon;
 
-$pista=Pista::find(1);
-$pista->hermano;
-use App\Models\Hermano;
-use App\Models\Pisa;
-use Carbon\Carbon;
+$saldo = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) as rfd
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+use App\Models\User;
 
-$pista=Pista::find(1);
-$pista->autore;
-use App\Models\Hermano;
-use App\Models\Pisa;
-use Carbon\Carbon;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-06'; 
+$saldo = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) - 
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as saldo
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
 
-$pista=Pista::find(1);
-$pista->hermano;
+
+$ingreso = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) as rfd
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+$egreso = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as rfd
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+$s=["saldo"=>$saldo];
+use App\Models\User;
+
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-06'; 
+$saldo = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) - 
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as saldo
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+
+$ingreso = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) as rfd
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+$egreso = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as rfd
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+$s=[$saldo];
+use App\Models\User;
+
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-06'; 
+$saldo = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) - 
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as saldo
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+
+$ingreso = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) as rfd
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+$egreso = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as rfd
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+$s=[$saldo,$ingreso];
+use App\Models\User;
+
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-06'; 
+$saldo = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) - 
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as saldo
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+
+$ingreso = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) as rfd
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+$egreso = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as rfd
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+$s=[$saldo,$ingreso,$egreso];
+use App\Models\User;
+
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-06'; 
+$saldo = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) - 
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as saldo
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+
+$ingreso = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'ingreso' THEN detallecuentas.monto ELSE 0 END) as ingreso
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+$egreso = DB::table('detallecuentas')
+        ->join('cuentas', 'detallecuentas.cuenta_id', '=', 'cuentas.id')
+        ->selectRaw("
+            SUM(CASE WHEN cuentas.tipo = 'egreso' THEN detallecuentas.monto ELSE 0 END) as egreso
+        ")
+       ->where('detallecuentas.user_id', Auth::id())
+        ->where('detallecuentas.fecha', '<=', $fecha)
+        ->first();
+
+$s=[$saldo,$ingreso,$egreso];
+use App\Models\User;
+
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-06'; 
+  $meses = DetalleCuenta::whereBetween('fecha', [$fechaInicio, $fechaFin])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+use App\Models\User;
+use App\Models\DetalleCuenta;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-06'; 
+  $meses = DetalleCuenta::whereBetween('fecha', [$fechaInicio, $fechaFin])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+use App\Models\User;
+use App\Models\DetalleCuenta;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-08'; 
+  $meses = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+use App\Models\User;
+use App\Models\DetalleCuenta;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-8'; 
+$meses = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+foreach ($meses as $mes) 
+            $detalles = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+                ->whereRaw("DATE_FORMAT(fecha, '%Y-%m') = ?", [$mes])
+                ->get();
+
+ $reportes[]= [
+                'detalles' => $detalles,
+            ];
+use App\Models\User;
+use App\Models\DetalleCuenta;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-8'; 
+$meses = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+foreach ($meses as $mes) 
+            $detalles = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+                ->whereRaw("DATE_FORMAT(fecha, '%Y-%m') = ?", [$mes])
+                ->get();
+use App\Models\User;
+use App\Models\DetalleCuenta;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-8'; 
+$meses = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+foreach ($meses as $mes) 
+            $detalles = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+                ->whereRaw("DATE_FORMAT(fecha, '%Y-%m') = ?", [$mes])
+                ->get();
+
+ $reportes[]= [
+                'detalles' => $detalles,
+            ];
+use App\Models\User;
+use App\Models\DetalleCuenta;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-8'; 
+$meses = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+foreach ($meses as $mes) 
+            $detalles = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+                ->whereRaw("DATE_FORMAT(fecha, '%Y-%m') = ?", [$mes])
+                ->get();
+
+ 
+                'detalles' => $detalles,
+use App\Models\User;
+use App\Models\DetalleCuenta;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-8'; 
+$meses = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+foreach ($meses as $mes) 
+            $detalles = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+                ->whereRaw("DATE_FORMAT(fecha, '%Y-%m') = ?", [$mes])
+                ->get();
+
+ 
+$detalles,
+use App\Models\User;
+use App\Models\DetalleCuenta;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-8'; 
+$meses = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+foreach ($meses as $mes) 
+            $detalles = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+                ->whereRaw("DATE_FORMAT(fecha, '%Y-%m') = ?", [$mes])
+                ->get();
+
+ 
+$detalles
+use App\Models\User;
+use App\Models\DetalleCuenta;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-8'; 
+$meses = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+foreach ($meses as $mes) 
+            $detalles = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+                ->whereRaw("DATE_FORMAT(fecha, '%Y-%m') = ?", [$mes])
+                ->get();
+
+ 
+$detalles
+     
+  $u=User::all();
+use App\Models\User;
+use App\Models\DetalleCuenta;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-8'; 
+$meses = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+foreach ($meses as $mes) 
+            $detalles = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+                ->whereRaw("DATE_FORMAT(fecha, '%Y-%m') = ?", [$mes])
+                ->get();
+
+ 
+$detalles
+     
+  $u=User::all();
+use App\Models\User;
+use App\Models\DetalleCuenta;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-8'; 
+$meses = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+foreach ($meses as $mes) 
+            $detalles = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+                ->whereRaw("DATE_FORMAT(fecha, '%Y-%m') = ?", [$mes])
+                ->get();
+
+ 
+     
+  $u=User::all();
+use App\Models\User;
+use App\Models\DetalleCuenta;
+use App\Models\Pago;
+use Illuminate\Support\Facades\DB;
+$fecha = '2025-01-8'; 
+$meses = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+            ->selectRaw("DATE_FORMAT(fecha, '%Y-%m') as mes")
+            ->groupBy('mes')
+            ->orderBy('mes')
+            ->pluck('mes');
+foreach ($meses as $mes) 
+            $detalles = DetalleCuenta::whereBetween('fecha', [$fecha, $fecha])
+                ->whereRaw("DATE_FORMAT(fecha, '%Y-%m') = ?", [$mes])
+                ->get();
+
+ 
+     
+  $u=User::all();

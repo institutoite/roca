@@ -9,6 +9,7 @@ use App\Models\Detallerol;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateHermanoRequest;
 use App\Http\Requests\RequestAjax;
+use App\Models\Iglesia;
 
 class HermanoController extends Controller
 {
@@ -26,7 +27,8 @@ class HermanoController extends Controller
      */
     public function create()
     {
-        return view('hermano.create');
+        $iglesias = Iglesia::all(); // Obtiene todas las iglesias
+        return view('hermano.create', compact('iglesias'));
     }
 
     /**
@@ -55,7 +57,8 @@ class HermanoController extends Controller
      */
     public function edit(Hermano $hermano)
     {
-        return view('hermano.edit', compact('hermano'));
+        $iglesias = Iglesia::all();
+        return view('hermano.edit', compact('hermano', 'iglesias'));
     }
 
     /**

@@ -130,20 +130,33 @@ class DetallerolController extends Controller
         return response()->json($data);
     }
     
-    public function descargar(Rol $rol){
-        $hermanos=Hermano::has('papeles')->get()->skip(1);
+    public function descargar(Rol $rol)
+    {
+        // Obtén el usuario autenticado
+        $usuario = auth()->user();
+    
+        // Filtra los hermanos que pertenecen a la misma iglesia que el usuario
+        $hermanos = Hermano::where('iglesia_id', $usuario->iglesia_id)
+            ->has('papeles')
+            ->get()
+            ->skip(1); // Si el `skip(1)` es necesario, se mantiene.
+    
+        // Datos que se pasarán a la vista
         $data = [
             'title' => 'Mi primer PDF',
             'content' => 'Contenido del PDF...',
-            'rol'=>$rol,
-            'detalleAgrupados'=>$rol->detalles->chunk(4),
-            'hermanos'=>$hermanos,
+            'rol' => $rol,
+            'detalleAgrupados' => $rol->detalles->chunk(4),
+            'hermanos' => $hermanos,
         ];
-
+    
+        // Genera el PDF con los datos filtrados
         $pdf = PDF::loadView('detallerol.descargarrol', $data);
     
-        return $pdf->download($rol->mes."_".$rol->gestion.'.pdf');
+        // Descarga el PDF con un nombre específico
+        return $pdf->download($rol->mes . "_" . $rol->gestion . '.pdf');
     }
+    
 
     public function updateparcipantes(RequestAjax $request){
         $detalle=Detallerol::findOrFail($request->id_detalle);

@@ -16,6 +16,10 @@ return new class extends Migration
             $table->string("nombre",30);
             $table->string("apellidos",50);
             $table->boolean("estado")->default(1);
+
+            $table->unsignedBigInteger("iglesia_id")->default(1);
+            $table->foreign('iglesia_id')->references("id")->on("iglesias");
+
             $table->softDeletes();
             $table->timestamps();
         });

@@ -17,11 +17,12 @@ class UserSeeder extends Seeder
          // Crear un usuario administrador
          User::create([
             'name' => 'Admin',
+            'iglesia_id' => 1,
             'email' => 'informaciones.ite@gmail.com',
             'password' => Hash::make('educabol'),
         ]);
 
         // Puedes agregar más usuarios según sea necesario
-        User::factory(10)->create();
+        //User::factory(10)->create();
     }
 }

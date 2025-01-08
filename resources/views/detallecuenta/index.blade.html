@@ -1,0 +1,40 @@
+
+@extends('adminlte::page')
+
+@section('title', 'Hermanos')
+
+@section('content')
+<div class="container">
+    <h1>Detalles de {{ $cuenta->nombre }}</h1>
+    <a href="{{ route('cuentas.detalles.create', $cuenta) }}" class="btn btn-primary mb-3">Registrar {{ $cuenta->tipo == 'ingreso' ? 'Ingreso' : 'Egreso' }}</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Monto</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($detalles as $detalle)
+                <tr>
+                    <td>{{ $detalle->id }}</td>
+                    <td>{{ $detalle->monto }}</td>
+                    <td>{{ $detalle->descripcion }}</td>
+                    <td>{{ $detalle->fecha }}</td>
+                    <td>
+                        <a href="{{ route('cuentas.detalles.edit', [$cuenta, $detalle]) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <form action="{{ route('cuentas.detalles.destroy', [$cuenta, $detalle]) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+@endsection

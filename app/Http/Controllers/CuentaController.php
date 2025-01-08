@@ -13,7 +13,8 @@ class CuentaController extends Controller
      */
     public function index()
     {
-        //
+        $cuentas = Cuenta::all(); // Obtener todas las cuentas
+        return view('cuentas.index', compact('cuentas'));
     }
 
     /**
@@ -21,7 +22,7 @@ class CuentaController extends Controller
      */
     public function create()
     {
-        //
+        return view('cuentas.create');
     }
 
     /**
@@ -29,7 +30,14 @@ class CuentaController extends Controller
      */
     public function store(StoreCuentaRequest $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:100',
+            'tipo' => 'required|in:ingreso,egreso',
+        ]);
+
+        Cuenta::create($request->all());
+
+        return redirect()->route('cuentas.index')->with('success', 'Cuenta creada exitosamente.');
     }
 
     /**
@@ -45,7 +53,7 @@ class CuentaController extends Controller
      */
     public function edit(Cuenta $cuenta)
     {
-        //
+        return view('cuentas.edit', compact('cuenta'));
     }
 
     /**
@@ -53,7 +61,14 @@ class CuentaController extends Controller
      */
     public function update(UpdateCuentaRequest $request, Cuenta $cuenta)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:100',
+            'tipo' => 'required|in:ingreso,egreso',
+        ]);
+
+        $cuenta->update($request->all());
+
+        return redirect()->route('cuentas.index')->with('success', 'Cuenta actualizada exitosamente.');
     }
 
     /**
@@ -61,6 +76,7 @@ class CuentaController extends Controller
      */
     public function destroy(Cuenta $cuenta)
     {
-        //
+        $cuenta->delete();
+        return redirect()->route('cuentas.index')->with('success', 'Cuenta eliminada exitosamente.');
     }
 }

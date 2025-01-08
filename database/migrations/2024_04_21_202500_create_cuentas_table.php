@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('cuentas', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre', 100); // Nombre de la cuenta (ej.: Diezmo, Ofrenda)
+            $table->enum('tipo', ['ingreso', 'egreso']); // Tipo de cuenta
             $table->timestamps();
         });
     }

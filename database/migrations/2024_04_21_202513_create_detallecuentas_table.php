@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('detallecuentas', function (Blueprint $table) {
             $table->id();
+            
+            $table->unsignedBigInteger('cuenta_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('cuenta_id')->references('id')->on('cuentas')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->decimal('monto', 10, 2); // Monto del movimiento
+            $table->string('descripcion', 255)->nullable(); // Detalle o motivo
+            $table->date('fecha'); // Fecha del movimiento
             $table->timestamps();
         });
     }

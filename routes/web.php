@@ -6,6 +6,8 @@ use App\Http\Controllers\PapelController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\DetalleRolController;
 use App\Http\Controllers\PistaController;
+use App\Http\Controllers\CuentaController;
+use App\Http\Controllers\DetalleCuentaController;
 use App\Models\Pista;
 use App\Models\Hermano;
 
@@ -31,6 +33,17 @@ Route::get('/', function () {
 })->name("inicio");
 
 Auth::routes();
+
+Route::resource('cuentas.detalles', DetalleCuentaController::class)->shallow();
+Route::post('/detallecuentas', [DetalleCuentaController::class, 'store'])->name('detallecuentas.store');
+Route::get('/detallecuentas/reporte', [DetalleCuentaController::class, 'reporte'])->name('detallecuentas.reporte');
+Route::get("detalle/formulario",function(){
+    return view("reportes.formulario");
+});
+
+// Route::get('/reporte/pdf/{fechainicio}/{fechafin}', [::class, 'generarPDF'])->name('reporte.pdf');
+Route::get('/reporte/pdf/{fechaInicio}/{fechaFin}', [DetalleCuentaController::class, 'generarPDF'])->name('reporte.pdf');
+
 
 Route::get('/home', [HermanoController::class, 'index'])->name('home');
 // Rutas para mostrar la lista y el formulario de creación
@@ -94,6 +107,9 @@ Route::get("descargar/pdf/{rol}",[DetalleRolController::class,'descargar'])->nam
 
 // endpoints 
 
+/* cuentas  */
+Route::resource('cuentas', CuentaController::class);
+
 
 Route::get("presididores",[HermanoController::class,"presididores"])->name("presididores");
 Route::get("miercoles",[HermanoController::class,"miercoles"])->name("miercoles");
@@ -123,3 +139,4 @@ Route::get('users/{id}', function ($id) {
 });
 
 Route::post('pista/guardar', [PistaController::class, 'guardarPistaAjax'])->name('guardar.pista.ajax');
+

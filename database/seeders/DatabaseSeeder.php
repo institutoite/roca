@@ -15,11 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         //\App\Models\User::factory(10)->create();
 
+        $this->call(IglesiaSeeder::class);
         $this->call(GeneroSeeder::class);
         $this->call(HermanoSeeder::class);
         $this->call(PapelSeeder::class);
         $this->call(RolSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PistaSeeder::class);
+        $this->call(CuentaSeeder::class);
     }
 }

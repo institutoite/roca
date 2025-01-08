@@ -323,6 +323,16 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Cuentas',
+            'url'  => 'cuentas',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Reportes',
+            'url'  => 'detalle/formulario',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
             'text' => 'Predicas',
             'url'  => 'roles',
             'icon' => 'fas fa-fw fa-user',
