@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HermanoController;
 use App\Http\Controllers\PapelController;
 use App\Http\Controllers\RolController;
-use App\Http\Controllers\DetalleRolController;
+use App\Http\Controllers\DetallerolController;
 use App\Http\Controllers\PistaController;
 use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\DetalleCuentaController;
