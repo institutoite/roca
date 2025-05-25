@@ -176,8 +176,8 @@
         <div class="watermark">ROCA Y CORONADO</div>
         
         <div class="header-section">
-            <h1 class="organization-name">IGLESIA EVANGÉLICA</h1>
-            <div class="document-type">Rol de Reuniones</div>
+            <h1 class="organization-name">ROL MENSUAL</h1>
+            <div class="document-type">Presididores y ministros</div>
         </div>
 
         <table class="member-details">
@@ -245,7 +245,7 @@
         </table>
 
         <div class="footer">
-            Santa Cruz {{ now()->isoFormat('LL') }} | Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres;
+            Colosenses 3:23 | Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres;
         </div>
     </div>
     @endforeach
