@@ -21,6 +21,7 @@ class PapelSeeder extends Seeder
             ['papel' => 'MINISTERIO MIERCOLES'],
             ['papel' => 'MINISTERIO SABADO'],
             ['papel' => 'MINISTRO'],
+            ['papel' => 'ANCIANO'],
         ];
 
         DB::table('papels')->insert($papels);
@@ -72,6 +73,16 @@ class PapelSeeder extends Seeder
         
         $filemon = Hermano::find(16);
         $filemon->papeles()->attach([6]);
+
+        // Firmantes fijos para las cartas (ancianos/pastores)
+        // OJO: se agrega ANCIANO al final para no romper IDs existentes.
+        $ancianos = [4, 9, 10, 11, 13];
+        foreach ($ancianos as $hermanoId) {
+            $hermano = Hermano::find($hermanoId);
+            if ($hermano) {
+                $hermano->papeles()->attach([7]);
+            }
+        }
 
         
     }

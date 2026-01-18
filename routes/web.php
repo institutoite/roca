@@ -8,6 +8,7 @@ use App\Http\Controllers\DetallerolController;
 use App\Http\Controllers\PistaController;
 use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\DetalleCuentaController;
+use App\Http\Controllers\CartaController;
 use App\Models\Pista;
 use App\Models\Hermano;
 
@@ -139,4 +140,13 @@ Route::get('users/{id}', function ($id) {
 });
 
 Route::post('pista/guardar', [PistaController::class, 'guardarPistaAjax'])->name('guardar.pista.ajax');
+
+// Cartas
+Route::get('/cartas', [CartaController::class, 'index'])->name('cartas.index');
+Route::get('/cartas/create', [CartaController::class, 'create'])->name('cartas.create');
+Route::post('/cartas', [CartaController::class, 'store'])->name('cartas.store');
+
+// Cartas (PDF)
+Route::get('/cartas/demo/pdf', [CartaController::class, 'demoPdf'])->name('cartas.demo.pdf');
+Route::get('/cartas/{carta}/pdf', [CartaController::class, 'pdf'])->name('cartas.pdf');
 

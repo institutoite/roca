@@ -23,6 +23,21 @@ class Hermano extends Model
     {
         return $this->belongsToMany(Papel::class)->withTimestamps();
     }
+
+    public function cartas()
+    {
+        return $this->belongsToMany(Carta::class, 'carta_hermano')->withTimestamps();
+    }
+
+    public function cartasComoDestinatarioPrincipal()
+    {
+        return $this->hasMany(Carta::class, 'destinatario_principal_id');
+    }
+
+    public function cartasSolicitadas()
+    {
+        return $this->belongsToMany(Carta::class, 'carta_solicitante')->withTimestamps();
+    }
     public function presidedetalles()
     {
         return $this->hasMany(Detallerol::class,"preside_id");

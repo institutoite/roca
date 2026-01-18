@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(GeneroSeeder::class);
         $this->call(HermanoSeeder::class);
         $this->call(PapelSeeder::class);
+        $this->call(CartaMotivoSeeder::class);
+        $this->call(CartaPlantillaSeeder::class);
         $this->call(RolSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PistaSeeder::class);

@@ -333,6 +333,21 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Cartas',
+            'url'  => 'cartas',
+            'icon' => 'far fa-fw fa-file',
+            'submenu' => [
+                [
+                    'text' => 'Crear carta',
+                    'url'  => 'cartas/create',
+                ],
+                [
+                    'text' => 'Listado',
+                    'url'  => 'cartas',
+                ],
+            ],
+        ],
+        [
             'text' => 'Predicas',
             'url'  => 'roles',
             'icon' => 'fas fa-fw fa-user',
@@ -438,7 +453,7 @@ return [
             ],
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
