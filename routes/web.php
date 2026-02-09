@@ -9,6 +9,8 @@ use App\Http\Controllers\PistaController;
 use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\DetalleCuentaController;
 use App\Http\Controllers\CartaController;
+use App\Http\Controllers\HimnoController;
+use App\Http\Controllers\IglesiaController;
 use App\Models\Pista;
 use App\Models\Hermano;
 
@@ -26,6 +28,10 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+
+Route::get('/inicio', function () {
     $pistas= Pista::all();
     $ministros = Hermano::whereHas('papeles', function ($query) {
         $query->where('papel', 'MINISTRO');
@@ -139,6 +145,13 @@ Route::get('actividades', function(){
 Route::get('users/{id}', function ($id) {
 });
 
+Route::get('coros', function(){
+    return view('coros');
+})->name('coros.index');
+
+Route::get('estudios', function(){
+    return view('estudios');
+})->name('estudios.index');
 Route::post('pista/guardar', [PistaController::class, 'guardarPistaAjax'])->name('guardar.pista.ajax');
 
 // Cartas
@@ -149,4 +162,13 @@ Route::post('/cartas', [CartaController::class, 'store'])->name('cartas.store');
 // Cartas (PDF)
 Route::get('/cartas/demo/pdf', [CartaController::class, 'demoPdf'])->name('cartas.demo.pdf');
 Route::get('/cartas/{carta}/pdf', [CartaController::class, 'pdf'])->name('cartas.pdf');
+
+// Iglesias
+Route::get('/iglesias', [IglesiaController::class, 'index'])->name('iglesias.index');
+
+// Himnos
+Route::get('/himnos', [HimnoController::class, 'index'])->name('himnos.index');
+Route::get('/himnos/offline-list', [HimnoController::class, 'offlineList'])->name('himnos.offline-list');
+Route::get('/himnos/offline-assets', [HimnoController::class, 'offlineAssets'])->name('himnos.offline-assets');
+Route::get('/himnos/{himno}', [HimnoController::class, 'show'])->name('himnos.show');
 

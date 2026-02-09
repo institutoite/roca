@@ -15,6 +15,55 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <style>
+        :root {
+            --app-bg: #f6f8fa;
+            --app-ink: #1f2a2e;
+            --app-card: #ffffff;
+            --app-border: #e5eaee;
+        }
+
+        body {
+            background: var(--app-bg);
+            color: var(--app-ink);
+        }
+
+        body.night-mode {
+            --app-bg: #0f1a22;
+            --app-ink: #e7eff4;
+            --app-card: #14232e;
+            --app-border: #1c2f3a;
+        }
+
+        body.night-mode .navbar {
+            background: #14232e !important;
+            border-bottom: 1px solid var(--app-border);
+        }
+
+        body.night-mode .navbar .nav-link,
+        body.night-mode .navbar .navbar-brand {
+            color: var(--app-ink);
+        }
+
+        body.night-mode .card {
+            background: var(--app-card);
+            border-color: var(--app-border);
+        }
+    </style>
+
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('himnoNightMode') === '1') {
+                    document.documentElement.classList.add('night-mode');
+                    document.body && document.body.classList.add('night-mode');
+                }
+            } catch (e) {
+                // noop
+            }
+        })();
+    </script>
 </head>
 <body>
     <div id="app">
@@ -76,5 +125,19 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+        (function () {
+            if (!('serviceWorker' in navigator)) {
+                return;
+            }
+
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js').catch(function () {
+                    // noop
+                });
+            });
+        })();
+    </script>
 </body>
 </html>

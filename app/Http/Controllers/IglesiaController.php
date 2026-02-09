@@ -13,7 +13,11 @@ class IglesiaController extends Controller
      */
     public function index()
     {
-        //
+        $iglesias = Iglesia::query()
+            ->orderBy('nombre')
+            ->paginate(25);
+
+        return view('iglesia.index', compact('iglesias'));
     }
 
     /**

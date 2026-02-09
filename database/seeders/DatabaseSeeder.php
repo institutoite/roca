@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Seeders\HermanosSeeder;
+use Database\Seeders\HimnoSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(PistaSeeder::class);
         $this->call(CuentaSeeder::class);
+        $this->call(HimnoSeeder::class);
     }
 }

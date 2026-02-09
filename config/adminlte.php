@@ -333,6 +333,11 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Himnos',
+            'url'  => '/himnos',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
             'text' => 'Cartas',
             'url'  => 'cartas',
             'icon' => 'far fa-fw fa-file',
